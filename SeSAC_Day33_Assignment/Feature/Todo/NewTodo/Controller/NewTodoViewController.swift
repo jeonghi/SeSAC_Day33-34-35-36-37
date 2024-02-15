@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Then
+import RealmSwift
 
 class NewTodoViewController: BaseViewController {
   
@@ -16,10 +17,12 @@ class NewTodoViewController: BaseViewController {
       $0.dataSource = self
       $0.delegate = self
       $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
+      $0.register(TitleTextFieldTableViewCell.self, forCellReuseIdentifier: TitleTextFieldTableViewCell.identifier)
+      $0.register(MemoTextViewTableViewCell.self, forCellReuseIdentifier: MemoTextViewTableViewCell.identifier)
     }
   }
   
-  var newTodo: Todo = .init(date: Date()) {
+  var newTodo: TodoEntity = .init() {
     didSet {
       newTodoView.tableView.reloadData()
     }
@@ -27,8 +30,15 @@ class NewTodoViewController: BaseViewController {
   
   let sections: [Section] = Section.allCases
   
+  var tasks: Results<TodoEntity>!
+  
   override func loadView() {
     view = newTodoView
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    newTodoView.tableView.reloadData()
   }
   
   override func viewDidLoad() {
@@ -51,7 +61,7 @@ class NewTodoViewController: BaseViewController {
   @objc func handleSelectedDateChanged(_ notification: Notification) {
     if let selectedDate = notification.object as? Date {
       print("Selected Date Changed: \(selectedDate)")
-      newTodo.date = selectedDate
+      newTodo.deadline = selectedDate
     }
   }
   
@@ -68,8 +78,8 @@ class NewTodoViewController: BaseViewController {
   
   override func configLayout() {
     
+    
   }
-  
   override func configHierarchy() {
     
   }
@@ -94,7 +104,7 @@ class NewTodoViewController: BaseViewController {
     navigationItem.leftBarButtonItems = [leftItem]
     navigationItem.rightBarButtonItems = [rightItem]
     
-    navigationItem.title = "새로운 할 일"
+    navigationItem.title = "새로운 미리 알림"
   }
   
   @objc
@@ -104,9 +114,10 @@ class NewTodoViewController: BaseViewController {
   
   @objc
   func tappedAddButton() {
+    let realm = try! Realm()
     
-    DispatchQueue.main.async {
-      
+    try! realm.write {
+      realm.add(self.newTodo)
     }
     
     dismiss(animated: true)
@@ -133,37 +144,63 @@ class NewTodoViewController: BaseViewController {
 }
 
 extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableView.automaticDimension
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    1
+    switch sections[section] {
+    case .text:
+      return 2
+    default:
+      return 1
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier)
-    
-    cell.backgroundColor = .white
-    
     let section = sections[indexPath.section]
     
-    cell.textLabel?.text = section.rawValue
-    cell.textLabel?.textAlignment = .left
-    cell.accessoryType = .disclosureIndicator
-    
-    switch section {
-    case .date:
-      cell.detailTextLabel?.text = newTodo.date.formatted()
-    case .tag:
-      cell.detailTextLabel?.text = newTodo.tag
-    case .priority:
-      cell.detailTextLabel?.text = newTodo.priority.stringValue
-    default:
-      break
+    if section == .text {
+      switch indexPath.row {
+      case 0:
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTextFieldTableViewCell.identifier, for: indexPath) as? TitleTextFieldTableViewCell else {
+          return .init()
+        }
+        
+        return cell
+      case 1:
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoTextViewTableViewCell.identifier, for: indexPath) as? MemoTextViewTableViewCell else {
+          return .init()
+        }
+        
+        return cell
+      default:
+        return .init()
+      }
+    } else {
+      
+      let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier)
+      
+      cell.backgroundColor = .white
+      
+      cell.textLabel?.text = section.rawValue
+      cell.textLabel?.textAlignment = .left
+      cell.accessoryType = .disclosureIndicator
+      
+      switch section {
+      case .date:
+        cell.detailTextLabel?.text = newTodo.deadline.formatted()
+      case .tag:
+        cell.detailTextLabel?.text = newTodo.tag
+      case .priority:
+        cell.detailTextLabel?.text = newTodo.priority.stringValue
+      default:
+        break
+      }
+      
+      return cell
     }
-    return cell
-  }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    50
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -172,12 +209,14 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
     switch selectedSection {
     case .date:
       routeToDateVC()
-    case .image:
-      routeToImagePickerVC()
+//    case .image:
+//      routeToImagePickerVC()
     case .priority:
       routeToPriorityVC()
     case .tag:
       routeToTagVC()
+    default:
+      return
     }
     return
   }
@@ -187,12 +226,14 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   enum Section: String, Hashable, CaseIterable {
+    case text
     case date = "마감일"
     case tag = "태그"
     case priority = "우선 순위"
-    case image = "이미지 추가"
+//    case image = "이미지 추가"
   }
 }
+
 
 @available(iOS 17.0, *)
 #Preview {

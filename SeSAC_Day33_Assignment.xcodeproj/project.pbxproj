@@ -17,6 +17,8 @@
 		5B05808D2B7CEAF3006C1C21 /* PriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */; };
 		5B0580902B7CF210006C1C21 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05808F2B7CF210006C1C21 /* Todo.swift */; };
 		5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0580912B7CF24E006C1C21 /* Priority.swift */; };
+		5B6103582B7DF68D00E72D12 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6103572B7DF68D00E72D12 /* Realm */; };
+		5B61035A2B7DF68D00E72D12 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6103592B7DF68D00E72D12 /* RealmSwift */; };
 		5B62BC592B7C9A270099A85F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC582B7C9A270099A85F /* AppDelegate.swift */; };
 		5B62BC5B2B7C9A270099A85F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC5A2B7C9A270099A85F /* SceneDelegate.swift */; };
 		5B62BC5D2B7C9A270099A85F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC5C2B7C9A270099A85F /* ViewController.swift */; };
@@ -35,6 +37,10 @@
 		5B62BC8D2B7CA2C20099A85F /* BaseViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC8C2B7CA2C20099A85F /* BaseViewConfigurable.swift */; };
 		5B62BC8F2B7CA2DD0099A85F /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC8E2B7CA2DD0099A85F /* BaseCollectionViewCell.swift */; };
 		5B62BC922B7CA36F0099A85F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC912B7CA36F0099A85F /* BaseView.swift */; };
+		5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */; };
+		5B9AAA562B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */; };
+		5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */; };
+		5B9AAA5A2B7E378400AF25F1 /* MemoTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +72,10 @@
 		5B62BC8C2B7CA2C20099A85F /* BaseViewConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewConfigurable.swift; sourceTree = "<group>"; };
 		5B62BC8E2B7CA2DD0099A85F /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B62BC912B7CA36F0099A85F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTextViewTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B61035A2B7DF68D00E72D12 /* RealmSwift in Frameworks */,
+				5B6103582B7DF68D00E72D12 /* Realm in Frameworks */,
 				5B62BC6E2B7C9B2F0099A85F /* SnapKit in Frameworks */,
 				5B62BC712B7C9B520099A85F /* Then in Frameworks */,
 			);
@@ -103,6 +115,7 @@
 		5B0580712B7CDFF1006C1C21 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5B9AAA522B7E2B4100AF25F1 /* Cell */,
 				5B0580742B7CE004006C1C21 /* NewTodoView.swift */,
 			);
 			path = View;
@@ -112,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				5B05808E2B7CF208006C1C21 /* Model */,
-				5B0580702B7CDFEB006C1C21 /* Controller */,
 				5B0580712B7CDFF1006C1C21 /* View */,
+				5B0580702B7CDFEB006C1C21 /* Controller */,
 			);
 			path = NewTodo;
 			sourceTree = "<group>";
@@ -249,6 +262,7 @@
 				5B62BC762B7C9DC80099A85F /* UIViewController+Extension.swift */,
 				5B62BC872B7CA2960099A85F /* NSObject+id.swift */,
 				5B62BC892B7CA2AA0099A85F /* UIView+addSubviews.swift */,
+				5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -303,6 +317,7 @@
 				5B62BC852B7CA2720099A85F /* BaseViewController.swift */,
 				5B62BC8E2B7CA2DD0099A85F /* BaseCollectionViewCell.swift */,
 				5B62BC912B7CA36F0099A85F /* BaseView.swift */,
+				5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -321,6 +336,15 @@
 				5B62BC8C2B7CA2C20099A85F /* BaseViewConfigurable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		5B9AAA522B7E2B4100AF25F1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */,
+				5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +366,8 @@
 			packageProductDependencies = (
 				5B62BC6D2B7C9B2F0099A85F /* SnapKit */,
 				5B62BC702B7C9B520099A85F /* Then */,
+				5B6103572B7DF68D00E72D12 /* Realm */,
+				5B6103592B7DF68D00E72D12 /* RealmSwift */,
 			);
 			productName = SeSAC_Day33_Assignment;
 			productReference = 5B62BC552B7C9A270099A85F /* SeSAC_Day33_Assignment.app */;
@@ -374,6 +400,7 @@
 			packageReferences = (
 				5B62BC6C2B7C9B2F0099A85F /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5B62BC6F2B7C9B520099A85F /* XCRemoteSwiftPackageReference "Then" */,
+				5B6103562B7DF68D00E72D12 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 5B62BC562B7C9A270099A85F /* Products */;
 			projectDirPath = "";
@@ -407,6 +434,7 @@
 				5B05808D2B7CEAF3006C1C21 /* PriorityView.swift in Sources */,
 				5B62BC922B7CA36F0099A85F /* BaseView.swift in Sources */,
 				5B62BC5D2B7C9A270099A85F /* ViewController.swift in Sources */,
+				5B9AAA562B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift in Sources */,
 				5B05808B2B7CEAEC006C1C21 /* PriorityViewController.swift in Sources */,
 				5B0580752B7CE004006C1C21 /* NewTodoView.swift in Sources */,
 				5B0580732B7CDFFF006C1C21 /* NewTodoViewController.swift in Sources */,
@@ -418,11 +446,14 @@
 				5B62BC882B7CA2960099A85F /* NSObject+id.swift in Sources */,
 				5B62BC802B7CA24C0099A85F /* RemiderView.swift in Sources */,
 				5B0580892B7CEAE2006C1C21 /* TagViewController.swift in Sources */,
+				5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */,
 				5B62BC862B7CA2720099A85F /* BaseViewController.swift in Sources */,
 				5B62BC772B7C9DC80099A85F /* UIViewController+Extension.swift in Sources */,
 				5B62BC8D2B7CA2C20099A85F /* BaseViewConfigurable.swift in Sources */,
 				5B62BC5B2B7C9A270099A85F /* SceneDelegate.swift in Sources */,
+				5B9AAA5A2B7E378400AF25F1 /* MemoTextViewTableViewCell.swift in Sources */,
 				5B0580852B7CEAD8006C1C21 /* DateView.swift in Sources */,
+				5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */,
 				5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */,
 				5B0580872B7CEADD006C1C21 /* TagView.swift in Sources */,
 			);
@@ -649,6 +680,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5B6103562B7DF68D00E72D12 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.47.0;
+			};
+		};
 		5B62BC6C2B7C9B2F0099A85F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -668,6 +707,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5B6103572B7DF68D00E72D12 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B6103562B7DF68D00E72D12 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		5B6103592B7DF68D00E72D12 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B6103562B7DF68D00E72D12 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		5B62BC6D2B7C9B2F0099A85F /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5B62BC6C2B7C9B2F0099A85F /* XCRemoteSwiftPackageReference "SnapKit" */;

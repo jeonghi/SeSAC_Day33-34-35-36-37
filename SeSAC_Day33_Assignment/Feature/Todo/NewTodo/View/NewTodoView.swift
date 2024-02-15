@@ -12,7 +12,7 @@ import SnapKit
 class NewTodoView: BaseView {
   
   let tableView = UITableView(frame: .zero, style: .insetGrouped).then {
-    $0.backgroundColor = .gray
+    $0.backgroundColor = .white
   }
   
   override func configView() {

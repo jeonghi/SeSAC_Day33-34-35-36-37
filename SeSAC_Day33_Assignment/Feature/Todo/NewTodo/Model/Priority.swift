@@ -5,7 +5,7 @@
 //  Created by 쩡화니 on 2/14/24.
 //
 
-import Foundation
+import RealmSwift
 
 enum Priority: Int, CaseIterable {
   case one = 1
@@ -20,3 +20,4 @@ enum Priority: Int, CaseIterable {
     return "\(self.rawValue)"
   }
 }
+extension Priority: PersistableEnum {}
