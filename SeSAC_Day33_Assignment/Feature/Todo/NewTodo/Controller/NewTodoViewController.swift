@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import RealmSwift
 import SnapKit
 import Then
-import RealmSwift
 
 class NewTodoViewController: BaseViewController {
   
@@ -17,20 +17,22 @@ class NewTodoViewController: BaseViewController {
       $0.dataSource = self
       $0.delegate = self
       $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
-      $0.register(TitleTextFieldTableViewCell.self, forCellReuseIdentifier: TitleTextFieldTableViewCell.identifier)
+      
       $0.register(MemoTextViewTableViewCell.self, forCellReuseIdentifier: MemoTextViewTableViewCell.identifier)
+      
+      $0.register(TitleTextFieldTableViewCell.self, forCellReuseIdentifier: TitleTextFieldTableViewCell.identifier)
+      
+      $0.backgroundColor = .lightGray
     }
   }
   
-  var newTodo: TodoEntity = .init() {
-    didSet {
-      newTodoView.tableView.reloadData()
-    }
-  }
+  var closeAction: (() -> Void)?
+  
+  var newTodo: TodoEntity = .init()
   
   let sections: [Section] = Section.allCases
   
-  var tasks: Results<TodoEntity>!
+  var tasks: Results<TodoEntity>?
   
   override func loadView() {
     view = newTodoView
@@ -43,6 +45,10 @@ class NewTodoViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    let realm = try! Realm()
+    
+    print(realm.configuration.fileURL)
     
     // NotificationCenter 옵저버 등록
     NotificationCenter.default.addObserver(self, selector: #selector(handleSelectedPriorityChanged(_:)), name: Notification.Name("SelectedPriorityChanged"), object: nil)
@@ -120,6 +126,7 @@ class NewTodoViewController: BaseViewController {
       realm.add(self.newTodo)
     }
     
+    closeAction?()
     dismiss(animated: true)
   }
   
@@ -167,8 +174,8 @@ extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleTextFieldTableViewCell.identifier, for: indexPath) as? TitleTextFieldTableViewCell else {
           return .init()
         }
-        
         return cell
+        
       case 1:
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoTextViewTableViewCell.identifier, for: indexPath) as? MemoTextViewTableViewCell else {
           return .init()

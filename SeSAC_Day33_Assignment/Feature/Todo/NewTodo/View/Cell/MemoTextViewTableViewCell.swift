@@ -23,13 +23,13 @@ class MemoTextViewTableViewCell: BaseTableViewCell {
   }
   
   override func configView() {
-    backgroundColor = .white
+    backgroundColor = .lightGray
   }
   
   override func configLayout() {
     
     textView.snp.makeConstraints {
-      $0.edges.equalTo(safeAreaLayoutGuide)
+      $0.edges.equalTo(contentView).inset(10)
     }
   }
   

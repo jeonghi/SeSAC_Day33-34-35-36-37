@@ -21,6 +21,8 @@ class BaseTableViewCell: UITableViewCell, BaseViewConfigurable {
   
   override func prepareForReuse() {
     super.prepareForReuse()
+    self.prepare()
+    self.configBase()
   }
   
   func prepare() {}

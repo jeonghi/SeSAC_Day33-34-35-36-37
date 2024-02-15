@@ -14,16 +14,18 @@ class TitleTextFieldTableViewCell: BaseTableViewCell {
   let textField: UITextField = .init().then {
     $0.placeholder = "제목"
     $0.textAlignment = .left
+    $0.textColor = .black
+    $0.borderStyle = .none
   }
   
   override func configView() {
+//    backgroundColor = .black
     backgroundColor = .white
   }
   
   override func configLayout() {
     textField.snp.makeConstraints {
-      $0.horizontalEdges.equalToSuperview()
-      $0.centerY.equalToSuperview()
+      $0.edges.equalTo(contentView).inset(10)
     }
   }
   

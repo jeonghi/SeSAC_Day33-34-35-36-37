@@ -7,10 +7,23 @@
 
 import UIKit
 import Then
+import RealmSwift
 
 final class ReminderViewController: BaseViewController {
   
-  let remiderView = RemiderView()
+  lazy var remiderView = RemiderView().then {
+    $0.tableView.do {
+      $0.dataSource = self
+      $0.delegate = self
+      $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
+    }
+  }
+  
+  var list: Results<TodoEntity>! {
+    didSet {
+      remiderView.tableView.reloadData()
+    }
+  }
   
   override func loadView() {
     view = remiderView
@@ -18,6 +31,7 @@ final class ReminderViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    loadData()
   }
   
   override func configView() {
@@ -26,9 +40,17 @@ final class ReminderViewController: BaseViewController {
   }
 }
 
-// MARK: 
+// MARK:
 extension ReminderViewController {
-  
+  func loadData() {
+    let realm = try! Realm()
+    
+    // realm 데이터 모두 가져오기
+    let data = realm.objects(TodoEntity.self)
+      .sorted(byKeyPath: "createdAt", ascending: true)
+    
+    list = data
+  }
 }
 
 extension ReminderViewController {
@@ -55,8 +77,8 @@ extension ReminderViewController {
   }
   
   func configNavigationBar(){
-//    navigationItem.title = "전체"
-//    navigationController?.navigationBar.prefersLargeTitles = true
+    navigationItem.title = "전체"
+    navigationController?.navigationBar.prefersLargeTitles = true
     // 후속 뷰에서는 적용안되도록 설정
     navigationItem.largeTitleDisplayMode = .always
     
@@ -88,8 +110,33 @@ extension ReminderViewController {
   @objc func tappedTemplateButton() {}
   
   @objc func sheetNewTodo(){
-    let vc = NewTodoViewController().wrapToNavigationVC()
-    present(vc, animated: true)
+    let vc = NewTodoViewController().then {
+      $0.closeAction = {
+        self.loadData()
+      }
+    }
+    present(vc.wrapToNavigationVC(), animated: true)
+  }
+}
+
+extension ReminderViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    list.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = UITableViewCell(style: .value2, reuseIdentifier: UITableViewCell.identifier)
+    let data = list[indexPath.row]
+    cell.textLabel?.text = data.title
+    cell.detailTextLabel?.text = data.createdAt.formatted()
+    return cell
+  }
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    100
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }
 
