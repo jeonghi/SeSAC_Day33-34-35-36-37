@@ -22,6 +22,10 @@
 		5B5F00B12B81F9E900B6A79A /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B02B81F9E900B6A79A /* UITableViewCell+Extension.swift */; };
 		5B5F00B32B81FDA200B6A79A /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */; };
 		5B5F00B52B81FE3700B6A79A /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B42B81FE3700B6A79A /* FormViewController.swift */; };
+		5B5F00B82B8203C000B6A79A /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B72B8203C000B6A79A /* FormModel.swift */; };
+		5B5F00BA2B8203DA00B6A79A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B92B8203DA00B6A79A /* Note.swift */; };
+		5B5F00BC2B8204E200B6A79A /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */; };
+		5B5F00BF2B8207FB00B6A79A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */; };
 		5B6103582B7DF68D00E72D12 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6103572B7DF68D00E72D12 /* Realm */; };
 		5B61035A2B7DF68D00E72D12 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6103592B7DF68D00E72D12 /* RealmSwift */; };
 		5B62BC592B7C9A270099A85F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC582B7C9A270099A85F /* AppDelegate.swift */; };
@@ -65,6 +69,10 @@
 		5B5F00B02B81F9E900B6A79A /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		5B5F00B42B81FE3700B6A79A /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		5B5F00B72B8203C000B6A79A /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
+		5B5F00B92B8203DA00B6A79A /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
+		5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		5B62BC552B7C9A270099A85F /* SeSAC_Day33_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Day33_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B62BC582B7C9A270099A85F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B62BC5A2B7C9A270099A85F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +119,7 @@
 				5B05807B2B7CEA93006C1C21 /* Priority */,
 				5B05807A2B7CEA8A006C1C21 /* Tag */,
 				5B0580792B7CEA80006C1C21 /* Date */,
-				5B0580782B7CEA77006C1C21 /* NewTodo */,
+				5B0580782B7CEA77006C1C21 /* Form */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -134,13 +142,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5B0580782B7CEA77006C1C21 /* NewTodo */ = {
+		5B0580782B7CEA77006C1C21 /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				5B5F00B62B8203B800B6A79A /* Model */,
 				5B0580712B7CDFF1006C1C21 /* View */,
 				5B0580702B7CDFEB006C1C21 /* Controller */,
 			);
-			path = NewTodo;
+			path = Form;
 			sourceTree = "<group>";
 		};
 		5B0580792B7CEA80006C1C21 /* Date */ = {
@@ -243,6 +252,30 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5B5F00B62B8203B800B6A79A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B5F00B72B8203C000B6A79A /* FormModel.swift */,
+				5B5F00B92B8203DA00B6A79A /* Note.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B5F00BD2B8207E800B6A79A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		5B5F00C02B820F7500B6A79A /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		5B62BC4C2B7C9A270099A85F = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +295,7 @@
 		5B62BC572B7C9A270099A85F /* SeSAC_Day33_Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				5B5F00C02B820F7500B6A79A /* Persistence */,
 				5B5F00AF2B81F36300B6A79A /* Model */,
 				5B62BC782B7CA21B0099A85F /* Feature */,
 				5B62BC752B7C9DB60099A85F /* Extension */,
@@ -350,6 +384,7 @@
 		5B62BC842B7CA2660099A85F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5B5F00BD2B8207E800B6A79A /* Component */,
 				5B62BC812B7CA2580099A85F /* Base */,
 			);
 			path = Common;
@@ -369,6 +404,7 @@
 				5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */,
 				5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */,
 				5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */,
+				5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -472,6 +508,8 @@
 				5B62BC742B7C9B700099A85F /* NotificationManager.swift in Sources */,
 				5B0580902B7CF210006C1C21 /* Todo.swift in Sources */,
 				5B5F00B32B81FDA200B6A79A /* TextInputTableViewCell.swift in Sources */,
+				5B5F00BC2B8204E200B6A79A /* TextViewTableViewCell.swift in Sources */,
+				5B5F00BF2B8207FB00B6A79A /* PlaceholderTextView.swift in Sources */,
 				5B62BC8F2B7CA2DD0099A85F /* BaseCollectionViewCell.swift in Sources */,
 				5B62BC882B7CA2960099A85F /* NSObject+id.swift in Sources */,
 				5B62BC802B7CA24C0099A85F /* RemiderView.swift in Sources */,
@@ -484,6 +522,8 @@
 				5B62BC5B2B7C9A270099A85F /* SceneDelegate.swift in Sources */,
 				5B9AAA5A2B7E378400AF25F1 /* MemoTextViewTableViewCell.swift in Sources */,
 				5B0580852B7CEAD8006C1C21 /* DateView.swift in Sources */,
+				5B5F00B82B8203C000B6A79A /* FormModel.swift in Sources */,
+				5B5F00BA2B8203DA00B6A79A /* Note.swift in Sources */,
 				5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */,
 				5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */,
 				5B0580872B7CEADD006C1C21 /* TagView.swift in Sources */,

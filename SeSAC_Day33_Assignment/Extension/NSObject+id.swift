@@ -8,5 +8,7 @@
 import Foundation
 
 extension NSObject {
-  static let identifier = String(describing: NSObject.self)
+  static var identifier: String {
+    String(describing: self)
+  }
 }

@@ -11,13 +11,7 @@ import SnapKit
 
 class NewTodoView: BaseView {
   
-  let tableView = UITableView(frame: .zero, style: .insetGrouped).then {
-    
-    $0.rowHeight = UITableView.automaticDimension
-    $0.estimatedRowHeight = 130
-    
-
-  }
+  let tableView = UITableView(frame: .zero, style: .insetGrouped)
   
   override func configView() {
     backgroundColor = .white
