@@ -119,9 +119,9 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
             text: self.todo.title, placeholder: "제목", didChange: { self.todo.title = $0 }),
           TextViewFormItem(text: self.todo.memo ?? "", placeholder: "메모", didChange: { self.todo.memo = $0})
         ]),
-        FormSection(items: [CustomFormItem(title: "마감일", detail: "", didChange: { self.todo.dueDate = $0 as? Date})]),
-        FormSection(items: [CustomFormItem(title: "태그", didChange: {_ in })]),
-        FormSection(items: [CustomFormItem(title: "우선순위", didChange: {_ in })])
+        FormSection(items: [CustomFormItem(title: "마감일", detail: "", didChange: { self.todo.dueDate = $0 })]),
+        FormSection(items: [CustomFormItem(title: "태그", didChange: { self.todo.tag = $0})]),
+        FormSection(items: [CustomFormItem(title: "우선순위", didChange: { self.todo.priority = $0})])
       ]
     )
     self.form = form
@@ -165,30 +165,63 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
       ) as! TextViewTableViewCell
       cell.configure(for: textRow)
       return cell
-    } else if let textRow = object as? CustomFormItem {
-      let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier).then {
-        $0.textLabel?.text = textRow.title
-        $0.textLabel?.textAlignment = .left
-        $0.accessoryType = .disclosureIndicator
-        $0.detailTextLabel?.text = textRow.detail ?? ""
+    } else {
+      if let textRow = object as? CustomFormItem<Date> {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier).then {
+          $0.textLabel?.text = textRow.title
+          $0.textLabel?.textAlignment = .left
+          $0.accessoryType = .disclosureIndicator
+          $0.detailTextLabel?.text = textRow.detail ?? ""
+        }
+        return cell
       }
-      
-      return cell
+      else if let textRow = object as? CustomFormItem<Priority> {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier).then {
+          $0.textLabel?.text = textRow.title
+          $0.textLabel?.textAlignment = .left
+          $0.accessoryType = .disclosureIndicator
+          $0.detailTextLabel?.text = textRow.detail ?? ""
+        }
+        return cell
+      }
+      else if let textRow = object as? CustomFormItem<String> {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier).then {
+          $0.textLabel?.text = textRow.title
+          $0.textLabel?.textAlignment = .left
+          $0.accessoryType = .disclosureIndicator
+          $0.detailTextLabel?.text = textRow.detail ?? ""
+        }
+        return cell
+      }
     }
     return .init()
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+    let object = model(at: indexPath)
+    var vc: UIViewController?
+    if let textRow = object as? CustomFormItem<Date> {
+      vc = DateViewController()
+    }
+    else if let textRow = object as? CustomFormItem<Priority> {
+      vc = PriorityViewController()
+      
+    }
+    else if let textRow = object as? CustomFormItem<String> {
+      vc = TagViewController()
+    }
+    guard let vc else { return }
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
-//  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//    return 10
-//  }
-//  
-//  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//    return 10
-//  }
+  //  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  //    return 10
+  //  }
+  //
+  //  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+  //    return 10
+  //  }
 }
 
 #Preview {
