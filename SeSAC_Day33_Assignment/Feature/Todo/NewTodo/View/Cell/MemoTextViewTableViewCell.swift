@@ -11,8 +11,6 @@ import Then
 
 class MemoTextViewTableViewCell: BaseTableViewCell {
   
-  var delegate: TableViewCellDeleagte?
-  
   lazy var textView: UITextView = .init().then {
     $0.textColor = UIColor.lightGray
     $0.textAlignment = .left
@@ -21,6 +19,7 @@ class MemoTextViewTableViewCell: BaseTableViewCell {
     $0.sizeToFit()
     $0.text = "메시지를 입력하세요"
     $0.backgroundColor = .white
+    $0.isUserInteractionEnabled = false // 터치 가능하게끔
   }
   
   override func configView() {
@@ -40,6 +39,7 @@ class MemoTextViewTableViewCell: BaseTableViewCell {
 }
 
 extension MemoTextViewTableViewCell: UITextViewDelegate {
+  
   func textViewDidBeginEditing(_ textView: UITextView) {
     if textView.textColor == UIColor.lightGray {
       textView.textColor = UIColor.black
@@ -54,12 +54,19 @@ extension MemoTextViewTableViewCell: UITextViewDelegate {
   }
   
   func textViewDidChange(_ textView: UITextView) {
-    delegate?.updateTextViewHeight(self, textView)
-  }
-}
+      guard let tableView = tableView else { return }
 
-protocol TableViewCellDeleagte: AnyObject {
-  func updateTextViewHeight(_ cell: UITableViewCell, _ textView: UITextView) -> Void
+      let contentSize = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: .infinity))
+
+      if textView.bounds.height != contentSize.height {
+          tableView.contentOffset.y += contentSize.height - textView.bounds.height
+
+          UIView.setAnimationsEnabled(false)
+          tableView.beginUpdates()
+          tableView.endUpdates()
+          UIView.setAnimationsEnabled(true)
+      }
+  }
 }
 
 @available(iOS 17.0, *)

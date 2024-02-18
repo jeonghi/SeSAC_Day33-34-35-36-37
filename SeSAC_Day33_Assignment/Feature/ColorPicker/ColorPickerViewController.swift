@@ -77,6 +77,7 @@ extension ColorPickerViewController: UIColorPickerViewControllerDelegate {
   
   func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
 //    selectedColor = color
+    view.backgroundColor = color
     return
   }
 }

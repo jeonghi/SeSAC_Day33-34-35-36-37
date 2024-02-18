@@ -16,13 +16,12 @@ class NewTodoViewController: BaseViewController {
     $0.tableView.do {
       $0.dataSource = self
       $0.delegate = self
+      
       $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
       
       $0.register(MemoTextViewTableViewCell.self, forCellReuseIdentifier: MemoTextViewTableViewCell.identifier)
       
       $0.register(TitleTextFieldTableViewCell.self, forCellReuseIdentifier: TitleTextFieldTableViewCell.identifier)
-      
-      $0.backgroundColor = .lightGray
     }
   }
   
@@ -54,28 +53,6 @@ class NewTodoViewController: BaseViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(handleSelectedPriorityChanged(_:)), name: Notification.Name("SelectedPriorityChanged"), object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(handleSelectedDateChanged(_:)), name: Notification.Name("SelectedDateChanged"), object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(handleTagTextFieldChanged(_:)), name: Notification.Name("TextFieldChanged"), object: nil)
-  }
-  
-  // 옵저버에서 호출할 메서드
-  @objc func handleSelectedPriorityChanged(_ notification: Notification) {
-    if let selectedPriority = notification.object as? Priority {
-      print("Selected Priority Changed: \(selectedPriority.rawValue)")
-      newTodo.priority = selectedPriority
-    }
-  }
-  
-  @objc func handleSelectedDateChanged(_ notification: Notification) {
-    if let selectedDate = notification.object as? Date {
-      print("Selected Date Changed: \(selectedDate)")
-      newTodo.deadline = selectedDate
-    }
-  }
-  
-  @objc func handleTagTextFieldChanged(_ notification: Notification) {
-    if let tagText = notification.object as? String {
-      print("Selected Date Changed: \(tagText)")
-      newTodo.tag = tagText
-    }
   }
   
   override func configView() {
@@ -150,9 +127,33 @@ class NewTodoViewController: BaseViewController {
   }
 }
 
+extension NewTodoViewController {
+  // 옵저버에서 호출할 메서드
+  @objc func handleSelectedPriorityChanged(_ notification: Notification) {
+    if let selectedPriority = notification.object as? Priority {
+      print("Selected Priority Changed: \(selectedPriority.rawValue)")
+      newTodo.priority = selectedPriority
+    }
+  }
+  
+  @objc func handleSelectedDateChanged(_ notification: Notification) {
+    if let selectedDate = notification.object as? Date {
+      print("Selected Date Changed: \(selectedDate)")
+      newTodo.deadline = selectedDate
+    }
+  }
+  
+  @objc func handleTagTextFieldChanged(_ notification: Notification) {
+    if let tagText = notification.object as? String {
+      print("Selected Date Changed: \(tagText)")
+      newTodo.tag = tagText
+    }
+  }
+}
+
 extension NewTodoViewController: UITableViewDataSource, UITableViewDelegate {
   
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
   
