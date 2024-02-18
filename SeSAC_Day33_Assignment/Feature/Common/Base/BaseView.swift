@@ -12,6 +12,7 @@ class BaseView: UIView, BaseViewConfigurable {
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.configBase()
+    self.backgroundColor = .white
   }
   
   required init?(coder: NSCoder) {

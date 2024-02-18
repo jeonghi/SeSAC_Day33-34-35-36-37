@@ -17,6 +17,7 @@
 		5B05808D2B7CEAF3006C1C21 /* PriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */; };
 		5B0580902B7CF210006C1C21 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05808F2B7CF210006C1C21 /* Todo.swift */; };
 		5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0580912B7CF24E006C1C21 /* Priority.swift */; };
+		5B5F00AB2B81CDA300B6A79A /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00AA2B81CDA300B6A79A /* ColorPickerViewController.swift */; };
 		5B6103582B7DF68D00E72D12 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6103572B7DF68D00E72D12 /* Realm */; };
 		5B61035A2B7DF68D00E72D12 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6103592B7DF68D00E72D12 /* RealmSwift */; };
 		5B62BC592B7C9A270099A85F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC582B7C9A270099A85F /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 		5B9AAA562B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */; };
 		5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */; };
 		5B9AAA5A2B7E378400AF25F1 /* MemoTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */; };
+		5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,7 @@
 		5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityView.swift; sourceTree = "<group>"; };
 		5B05808F2B7CF210006C1C21 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		5B0580912B7CF24E006C1C21 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		5B5F00AA2B81CDA300B6A79A /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		5B62BC552B7C9A270099A85F /* SeSAC_Day33_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Day33_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B62BC582B7C9A270099A85F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B62BC5A2B7C9A270099A85F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTextViewTableViewCell.swift; sourceTree = "<group>"; };
+		5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +219,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5B5F00A92B81CD8D00B6A79A /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				5B5F00AA2B81CDA300B6A79A /* ColorPickerViewController.swift */,
+			);
+			path = ColorPicker;
+			sourceTree = "<group>";
+		};
 		5B62BC4C2B7C9A270099A85F = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +275,7 @@
 				5B62BC872B7CA2960099A85F /* NSObject+id.swift */,
 				5B62BC892B7CA2AA0099A85F /* UIView+addSubviews.swift */,
 				5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */,
+				5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -270,6 +283,7 @@
 		5B62BC782B7CA21B0099A85F /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				5B5F00A92B81CD8D00B6A79A /* ColorPicker */,
 				5B62BC842B7CA2660099A85F /* Common */,
 				5B05806F2B7CDFDE006C1C21 /* Todo */,
 				5B62BC792B7CA2260099A85F /* Reminder */,
@@ -432,6 +446,7 @@
 				5B0580832B7CEAD4006C1C21 /* DateViewController.swift in Sources */,
 				5B62BC8A2B7CA2AA0099A85F /* UIView+addSubviews.swift in Sources */,
 				5B05808D2B7CEAF3006C1C21 /* PriorityView.swift in Sources */,
+				5B5F00AB2B81CDA300B6A79A /* ColorPickerViewController.swift in Sources */,
 				5B62BC922B7CA36F0099A85F /* BaseView.swift in Sources */,
 				5B62BC5D2B7C9A270099A85F /* ViewController.swift in Sources */,
 				5B9AAA562B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift in Sources */,
@@ -456,6 +471,7 @@
 				5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */,
 				5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */,
 				5B0580872B7CEADD006C1C21 /* TagView.swift in Sources */,
+				5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

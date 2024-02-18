@@ -20,16 +20,17 @@ class MemoTextViewTableViewCell: BaseTableViewCell {
     $0.isScrollEnabled = true
     $0.sizeToFit()
     $0.text = "메시지를 입력하세요"
+    $0.backgroundColor = .white
   }
   
   override func configView() {
-    backgroundColor = .lightGray
+    
   }
   
   override func configLayout() {
     
     textView.snp.makeConstraints {
-      $0.edges.equalTo(contentView).inset(10)
+      $0.edges.equalTo(contentView)
     }
   }
   

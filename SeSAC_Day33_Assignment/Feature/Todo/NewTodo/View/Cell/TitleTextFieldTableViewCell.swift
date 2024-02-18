@@ -19,7 +19,6 @@ class TitleTextFieldTableViewCell: BaseTableViewCell {
   }
   
   override func configView() {
-//    backgroundColor = .black
     backgroundColor = .white
   }
   
