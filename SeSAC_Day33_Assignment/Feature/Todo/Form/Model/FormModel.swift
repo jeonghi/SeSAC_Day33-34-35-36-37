@@ -25,7 +25,10 @@ final class FormSection {
   }
 }
 
-protocol FormItem {
+struct CustomFormItem: FormItem {
+  let title: String
+  var detail: String? = nil
+  let didChange: (Any) -> ()
 }
 
 struct TextInputFormItem: FormItem {
@@ -38,4 +41,7 @@ struct TextViewFormItem: FormItem {
   let text: String
   let placeholder: String
   let didChange: (String) -> ()
+}
+
+protocol FormItem {
 }

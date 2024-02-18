@@ -15,6 +15,7 @@ final class PlaceholderTextView: UITextView {
     view.textColor = UIColor(red: 0, green: 0, blue: 0.098, alpha: 0.22)
     view.isUserInteractionEnabled = false
     view.isAccessibilityElement = false
+    view.adjustsFontForContentSizeCategory = true
     return view
   }()
   
@@ -28,32 +29,31 @@ final class PlaceholderTextView: UITextView {
   }
   
   func setupUI() {
-    delegate = self
     
-//    backgroundColor = .lightGray.withAlphaComponent(0.3)
+    delegate = self
     
     layer.cornerRadius = 14.0
     clipsToBounds = true
     
-//    textContainerInset = UIEdgeInsets(top: 30, left: 24, bottom: 30, right: 24)
+    textContainerInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
     contentInset = .zero
     
     addSubview(placeholderTextView)
     
-//    placeholderTextView.textContainerInset = UIEdgeInsets(top: 30, left: 24, bottom: 30, right: 24)
+    placeholderTextView.textContainerInset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
     placeholderTextView.contentInset = contentInset
   }
   
   var placeholderText: String? {
     didSet {
       placeholderTextView.text = placeholderText
-      updatePlaceholderTextView() // <-
+      updatePlaceholderTextView()
     }
   }
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    updatePlaceholderTextView() // <-
+    updatePlaceholderTextView()
   }
   
   func updatePlaceholderTextView() {

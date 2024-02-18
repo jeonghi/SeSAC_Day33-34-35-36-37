@@ -9,26 +9,29 @@ import UIKit
 import Then
 import SnapKit
 
-final class RemiderView: BaseView {
+final class ReminderView: BaseView {
   
-  lazy var tableView = UITableView()
+  lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then {
+    $0.scrollDirection = .vertical
+    $0.sectionInset = .init(top: 10, left: 10, bottom: 10, right: 10)
+  })
   
   override func configView() {
     backgroundColor = .white
   }
   
   override func configLayout() {
-    tableView.snp.makeConstraints {
+    collectionView.snp.makeConstraints {
       $0.edges.equalTo(safeAreaLayoutGuide)
     }
   }
   
   override func configHierarchy() {
-    self.addSubviews([tableView])
+    self.addSubviews([collectionView])
   }
 }
 
 @available(iOS 17.0, *)
 #Preview {
-  RemiderView()
+  ReminderView()
 }

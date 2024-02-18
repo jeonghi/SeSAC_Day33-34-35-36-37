@@ -14,8 +14,9 @@ final class TextViewTableViewCell: BaseTableViewCell {
   lazy var editableTextView = PlaceholderTextView().then {
     $0.textAlignment = .left
     $0.delegate = self
-    $0.isScrollEnabled = true
+    $0.isScrollEnabled = false
     $0.isUserInteractionEnabled = false // 터치 가능하게끔
+    $0.sizeToFit()
   }
   
   // MARK: Initializing a Cell
@@ -32,7 +33,7 @@ final class TextViewTableViewCell: BaseTableViewCell {
     editableTextView.snp.makeConstraints {
       $0.centerY.equalToSuperview()
       $0.leading.trailing.equalTo(layoutMarginsGuide)
-      $0.height.greaterThanOrEqualToSuperview()
+      $0.height.greaterThanOrEqualTo(80)
     }
   }
   

@@ -7,68 +7,40 @@
 
 import UIKit
 import Then
+import Toast
 
 final class FormViewController: BaseViewController {
   
   // MARK: Creating a Form View
   
-  let form: Form
+  let todo: TodoItem
+  var form: Form = .init(sections: [])
   
   var closeAction: (() -> Void)?
   
   lazy var todoView: NewTodoView = .init().then {
-    $0.tableView.delegate = self
-    $0.tableView.dataSource = self
-    $0.tableView.register(
-      TextInputTableViewCell.self,
-      forCellReuseIdentifier: TextInputTableViewCell.identifier
-    )
-    $0.tableView.register(
-      TextViewTableViewCell.self,
-      forCellReuseIdentifier: TextViewTableViewCell.identifier
-    )
-    
-    $0.tableView.rowHeight = UITableView.automaticDimension
-    $0.tableView.estimatedRowHeight = 500
+    $0.tableView.do {
+      $0.delegate = self
+      $0.dataSource = self
+      $0.register(TextInputTableViewCell.self, forCellReuseIdentifier: TextInputTableViewCell.identifier)
+      $0.register(TextViewTableViewCell.self, forCellReuseIdentifier: TextViewTableViewCell.identifier)
+      $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
+      $0.rowHeight = UITableView.automaticDimension
+      $0.estimatedRowHeight = 500
+      $0.sectionHeaderHeight = .init(10)
+      $0.sectionFooterHeight = .init(10)
+    }
   }
   
+  var todoRepository: TodoRepository = TodoRepositoryImpl()
+  
   init(
-    form: Form
+    todo: TodoItem = .init()
   ) {
-    self.form = form
+    self.todo = todo
     super.init(
       nibName: nil,
       bundle: nil
-    )
-  }
-  
-  convenience init(
-    note: Note
-  ) {
-    let form = Form(
-      sections: [
-        FormSection(
-          items: [
-            TextInputFormItem(
-              text: note.topic,
-              placeholder: "Add title",
-              didChange: {
-                text in
-                note.text = text
-              }),
-            TextViewFormItem(
-              text: note.text,
-              placeholder: "Add description",
-              didChange: {
-                text in
-                note.text = text
-              })
-          ]
-        )
-      ]
-    )
-    self.init(
-      form: form
     )
   }
   
@@ -88,6 +60,7 @@ final class FormViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    refresh()
   }
   
   override func configView() {
@@ -113,8 +86,6 @@ final class FormViewController: BaseViewController {
     
     navigationItem.leftBarButtonItems = [leftItem]
     navigationItem.rightBarButtonItems = [rightItem]
-    
-    navigationItem.title = "새로운 미리 알림"
   }
   
   @objc
@@ -124,27 +95,46 @@ final class FormViewController: BaseViewController {
   
   @objc
   func tappedAddButton() {
+    if(!validateRequiredConditionSatisfied()){
+      self.view.makeToast("제목을 입력해주세요", position: .top)
+      return
+    }
+    todoRepository.create(todoItem: todo)
     closeAction?()
     dismiss(animated: true)
+  }
+  
+  func validateRequiredConditionSatisfied() -> Bool {
+    !todo.title.isEmpty
   }
 }
 
 extension FormViewController: UITableViewDelegate, UITableViewDataSource {
   // MARK: Providing Table View Content
+  func refresh() {
+    let form = Form(
+      sections: [
+        FormSection(items: [
+          TextInputFormItem(
+            text: self.todo.title, placeholder: "제목", didChange: { self.todo.title = $0 }),
+          TextViewFormItem(text: self.todo.memo ?? "", placeholder: "메모", didChange: { self.todo.memo = $0})
+        ]),
+        FormSection(items: [CustomFormItem(title: "마감일", detail: "", didChange: { self.todo.dueDate = $0 as? Date})]),
+        FormSection(items: [CustomFormItem(title: "태그", didChange: {_ in })]),
+        FormSection(items: [CustomFormItem(title: "우선순위", didChange: {_ in })])
+      ]
+    )
+    self.form = form
+  }
   
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
     UITableView.automaticDimension
   }
   
-  private func model(
-    at indexPath: IndexPath
-  ) -> FormItem {
-    return form.sections[indexPath.section].items[indexPath.item]
-  }
+  private func model(at indexPath: IndexPath) -> FormItem {
+    return form.sections[indexPath.section].items[indexPath.item]}
   
-  func numberOfSections(
-    in tableView: UITableView
-  ) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return form.sections.count
   }
   
@@ -175,13 +165,32 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
       ) as! TextViewTableViewCell
       cell.configure(for: textRow)
       return cell
+    } else if let textRow = object as? CustomFormItem {
+      let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier).then {
+        $0.textLabel?.text = textRow.title
+        $0.textLabel?.textAlignment = .left
+        $0.accessoryType = .disclosureIndicator
+        $0.detailTextLabel?.text = textRow.detail ?? ""
+      }
+      
+      return cell
     }
     return .init()
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
+  
+//  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//    return 10
+//  }
+//  
+//  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//    return 10
+//  }
 }
 
-
-
 #Preview {
-  FormViewController(note: .init(topic: "", text: "")).wrapToNavigationVC()
+  FormViewController(todo: .init(title: "하하")).wrapToNavigationVC()
 }

@@ -8,16 +8,16 @@
 import RealmSwift
 
 enum Priority: Int, CaseIterable {
-  case one = 1
-  case two
-  case three
-  case four
-  case five
-  case six
-  case seven
+  case high = 2 // 상
+  case medium = 1 // 중
+  case low = 0 // 하
   
-  var stringValue: String {
-    return "\(self.rawValue)"
+  var description: String {
+    switch self {
+    case .high: return "상"
+    case .medium: return "중"
+    case .low: return "하"
+    }
   }
 }
 extension Priority: PersistableEnum {}
