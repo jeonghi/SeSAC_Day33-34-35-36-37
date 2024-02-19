@@ -14,6 +14,8 @@ final class TodoItemListViewController: BaseViewController {
   
   var todoRepository: TodoRepository = TodoRepositoryImpl()
   
+  var defaultPredicate: NSPredicate?
+  
   var list: Results<TodoItem>? {
     didSet {
       refresh()
@@ -34,7 +36,7 @@ final class TodoItemListViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    list = todoRepository.readAll()
+    list = todoRepository.readFiltered(by: defaultPredicate ?? NSPredicate(value: true))
   }
   
   override func viewDidLayoutSubviews() {

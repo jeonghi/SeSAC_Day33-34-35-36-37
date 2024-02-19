@@ -21,7 +21,7 @@ final class ReminderViewController: BaseViewController {
     }
   }
   
-  var list: Results<TodoItem>? {
+  var todoItems: Results<TodoItem>? {
     didSet {
       refresh()
     }
@@ -55,12 +55,9 @@ final class ReminderViewController: BaseViewController {
   }
   
   func refresh() {
-    let systemSection = Section.system([
-      .init(groupTitle: "오늘", numberOfItems: list?.filter{Calendar.current.isDateInToday($0.dueDate ?? Date())}.count ?? 0, tintColor: .systemBlue),
-      .init(groupTitle: "예정", numberOfItems: list?.filter{Calendar.current.isDateInToday($0.dueDate ?? Date())}.count ?? 0, tintColor: .systemYellow),
-      .init(iconImageName: "archivebox.circle.fill", groupTitle: "전체", numberOfItems: list?.count ?? 0, tintColor: .systemGray),
-      .init(iconImageName: "checkmark.circle.fill", groupTitle: "완료됨", numberOfItems: list?.filter{$0.isDone}.count ?? 0, tintColor: .darkGray)
-    ])
+    let systemSection = Section.system(
+      FilterOption.allCases.map{ListModel(filterOption: $0)}
+    )
     
     let customSection = Section.custom([])
     
@@ -73,7 +70,7 @@ final class ReminderViewController: BaseViewController {
 // MARK:
 extension ReminderViewController {
   func loadData() {
-    list = todoRepository.readAll()
+    todoItems = todoRepository.readAll()
   }
 }
 
@@ -158,7 +155,9 @@ extension ReminderViewController: UICollectionViewDelegate, UICollectionViewData
       return .init()
     }
     
-    cell.config(iconImage: UIImage(systemName: model?.iconImageName ?? "")?.withTintColor(model?.tintColor ?? .link, renderingMode: .alwaysOriginal), title: model?.groupTitle, count: model?.numberOfItems)
+    let option = model?.filterOption
+    
+    cell.config(iconImage: option?.icon?.withTintColor(option?.tintColor ?? .link, renderingMode: .alwaysOriginal), title: option?.rawValue, count: todoItems?.filter(option?.predicate ?? NSPredicate(value: true)).count ?? 0)
     return cell
   }
   
@@ -176,8 +175,10 @@ extension ReminderViewController: UICollectionViewDelegate, UICollectionViewData
       model = models[indexPath.row]
     }
     
+    let option = model?.filterOption
     let vc = TodoItemListViewController()
-    vc.navigationItem.title = model?.groupTitle
+    vc.defaultPredicate = option?.predicate
+    vc.navigationItem.title = option?.rawValue
     self.navigationController?.pushViewController(vc, animated: true)
   }
 }
@@ -185,9 +186,9 @@ extension ReminderViewController: UICollectionViewDelegate, UICollectionViewData
 extension ReminderViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let width = collectionView.bounds.width / 2 - (10 * 2)
-        let title = ""
-        let height = calculateDynamicHeight(forWidth: width, title: title)
-        return CGSize(width: width, height: height)
+    let title = ""
+    let height = calculateDynamicHeight(forWidth: width, title: title)
+    return CGSize(width: width, height: height)
   }
   
   func calculateDynamicHeight(forWidth width: CGFloat, title: String) -> CGFloat {
@@ -230,10 +231,56 @@ extension ReminderViewController {
   }
   
   struct ListModel {
-    var iconImageName: String = "calendar.circle.fill"
-    let groupTitle: String
-    let numberOfItems: Int
-    var tintColor: UIColor = .link
+    var filterOption: FilterOption
+  }
+  
+  enum FilterOption: String, CaseIterable {
+    
+    case today = "오늘"
+    case upcoming = "예정"
+    case all = "전체"
+    case done = "완료됨"
+    
+    var icon: UIImage? {
+      switch self {
+      case .all:
+        return UIImage(systemName: "archivebox.circle.fill")
+      case .done:
+        return UIImage(systemName: "checkmark.circle.fill")
+      case .upcoming, .today:
+        return UIImage(systemName: "calendar.circle.fill")
+      }
+    }
+    
+    var tintColor: UIColor {
+      switch self {
+      case .all:
+        return .lightGray
+      case .done:
+        return .darkGray
+      case .upcoming:
+        return .systemYellow
+      case .today:
+        return .link
+      }
+    }
+    
+    var predicate: NSPredicate {
+      switch self {
+      case .all:
+        return NSPredicate(value: true)
+      case .done:
+        return NSPredicate(format: "isDone == true")
+      case .upcoming:
+        return NSPredicate(format: "dueDate > %@ AND isDone == false", Date() as NSDate)
+      case .today:
+        return {
+          let startOfDay = Calendar.current.startOfDay(for: Date())
+          let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+          return NSPredicate(format: "dueDate >= %@ AND dueDate < %@ AND isDone == false", startOfDay as NSDate, endOfDay as NSDate)
+        }()
+      }
+    }
   }
 }
 
