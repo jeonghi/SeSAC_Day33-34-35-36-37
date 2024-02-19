@@ -119,9 +119,9 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
             text: self.todo.title, placeholder: "제목", didChange: { self.todo.title = $0 }),
           TextViewFormItem(text: self.todo.memo ?? "", placeholder: "메모", didChange: { self.todo.memo = $0})
         ]),
-        FormSection(items: [CustomFormItem(title: "마감일", detail: "", didChange: { self.todo.dueDate = $0 })]),
-        FormSection(items: [CustomFormItem(title: "태그", didChange: { self.todo.tag = $0})]),
-        FormSection(items: [CustomFormItem(title: "우선순위", didChange: { self.todo.priority = $0})])
+        FormSection(items: [CustomFormItem(title: "마감일", detail: self.todo.dueDate?.toString(), didChange: { self.todo.dueDate = $0 })]),
+        FormSection(items: [CustomFormItem(title: "태그", detail: self.todo.tag, didChange: { self.todo.tag = $0})]),
+        FormSection(items: [CustomFormItem(title: "우선순위", detail: self.todo.priority?.description, didChange: { self.todo.priority = $0})])
       ]
     )
     self.form = form
@@ -202,14 +202,34 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     let object = model(at: indexPath)
     var vc: UIViewController?
     if let textRow = object as? CustomFormItem<Date> {
-      vc = DateViewController()
+      vc = DateViewController().then {
+        $0.selectedDate = todo.dueDate
+        $0.action = {
+          self.todo.dueDate = $0
+          self.refresh()
+          tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+      }
     }
     else if let textRow = object as? CustomFormItem<Priority> {
-      vc = PriorityViewController()
-      
+      vc = PriorityViewController().then {
+        $0.selectedPriority = todo.priority
+        $0.action = {
+          self.todo.priority = $0
+          self.refresh()
+          tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+      }
     }
     else if let textRow = object as? CustomFormItem<String> {
-      vc = TagViewController()
+      vc = TagViewController().then {
+        $0.tag = todo.tag
+        $0.action = {
+          self.todo.tag = $0
+          self.refresh()
+          tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+      }
     }
     guard let vc else { return }
     self.navigationController?.pushViewController(vc, animated: true)

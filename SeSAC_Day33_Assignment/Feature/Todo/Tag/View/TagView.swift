@@ -11,6 +11,9 @@ import SnapKit
 
 class TagView: BaseView {
   
+  
+  var action: ((String?) -> Void)? = nil
+  
   let textField = UITextField().then {
     $0.borderStyle = .roundedRect
     $0.backgroundColor = .lightGray.withAlphaComponent(0.2)
@@ -34,7 +37,7 @@ class TagView: BaseView {
   }
   
   @objc func textFieldChanged(_ sender: UITextField) {
-    NotificationCenter.default.post(name: Notification.Name("TextFieldChanged"), object: sender.text)
+    action?(sender.text)
   }
 }
 

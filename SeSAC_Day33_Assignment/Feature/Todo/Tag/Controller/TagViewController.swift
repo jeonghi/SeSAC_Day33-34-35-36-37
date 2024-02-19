@@ -13,6 +13,22 @@ class TagViewController: BaseViewController {
   
   let tagView = TagView()
   
+  var tag: String? {
+    get {
+      tagView.textField.text
+    }
+    
+    set {
+      tagView.textField.text = newValue
+    }
+  }
+  
+  var action: ((String?) -> Void)? {
+    didSet {
+      tagView.action = action
+    }
+  }
+  
   override func loadView() {
     view = tagView
   }

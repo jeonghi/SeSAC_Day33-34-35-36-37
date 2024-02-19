@@ -11,7 +11,23 @@ import SnapKit
 
 class DateViewController: BaseViewController {
   
-  let dateView = DateView()
+  lazy var dateView = DateView()
+  
+  var selectedDate: Date? {
+    get {
+      dateView.datePicker.date
+    }
+    
+    set {
+      dateView.datePicker.date = newValue ?? Date()
+    }
+  }
+  
+  var action: ((Date?) -> Void)? {
+    didSet {
+      self.dateView.action = self.action
+    }
+  }
   
   override func loadView() {
     view = dateView

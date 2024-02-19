@@ -18,6 +18,8 @@ class DateView: BaseView {
     $0.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
   }
   
+  var action: ((Date?) -> Void)? = nil
+  
   override func configView() {
     backgroundColor = .white
   }
@@ -34,7 +36,7 @@ class DateView: BaseView {
   }
   
   @objc func dateChanged(_ sender: UIDatePicker) {
-    NotificationCenter.default.post(name: Notification.Name("SelectedDateChanged"), object: sender.date)
+    action?(sender.date)
   }
 }
 

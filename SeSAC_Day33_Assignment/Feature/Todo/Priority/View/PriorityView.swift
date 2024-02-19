@@ -11,18 +11,13 @@ import SnapKit
 
 class PriorityView: BaseView {
   
-  var selectedPriority: Priority = .high {
-    didSet {
-      print("Selected Priority: \(selectedPriority.rawValue)")
-      NotificationCenter.default.post(name: Notification.Name("SelectedPriorityChanged"), object: selectedPriority)
-    }
-  }
-  
   let segmentControl = UISegmentedControl(items: Priority.allCases.map { $0.description }).then {
     $0.selectedSegmentIndex = 0
     $0.backgroundColor = .lightGray
     $0.addTarget(self, action: #selector(segmentValueChanged(_:)), for: .valueChanged)
   }
+  
+  var action: ((Priority?) -> Void)?
   
   override func configView() {
     backgroundColor = .white
@@ -40,8 +35,8 @@ class PriorityView: BaseView {
   }
   
   @objc func segmentValueChanged(_ sender: UISegmentedControl) {
-    guard let selectedPriorityIndex = Priority(rawValue: sender.selectedSegmentIndex + 1) else { return }
-    selectedPriority = selectedPriorityIndex
+    let selectedPriority = Priority(rawValue: sender.selectedSegmentIndex + 1)
+    action?(selectedPriority)
   }
 }
 @available(iOS 17.0, *)

@@ -13,6 +13,21 @@ class PriorityViewController: BaseViewController {
   
   let priorityView = PriorityView()
   
+  var selectedPriority: Priority? {
+    get {
+      Priority(rawValue: priorityView.segmentControl.selectedSegmentIndex + 1)
+    }
+    
+    set {
+      self.priorityView.segmentControl.selectedSegmentIndex = newValue?.rawValue ?? 0 + 1
+    }
+  }
+  var action: ((Priority?) -> Void)? {
+    didSet {
+      priorityView.action = self.action
+    }
+  }
+  
   override func loadView() {
     view = priorityView
   }
