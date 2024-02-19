@@ -16,7 +16,7 @@ final class TodoItemListViewController: BaseViewController {
   
   var defaultPredicate: NSPredicate?
   
-  var list: Results<TodoItem>? {
+  var todoItems: Results<TodoItem>? {
     didSet {
       refresh()
     }
@@ -36,7 +36,7 @@ final class TodoItemListViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    list = todoRepository.readFiltered(by: defaultPredicate ?? NSPredicate(value: true))
+    todoItems = todoRepository.readFiltered(by: defaultPredicate ?? NSPredicate(value: true))
   }
   
   override func viewDidLayoutSubviews() {
@@ -57,6 +57,37 @@ final class TodoItemListViewController: BaseViewController {
   }
   
   func configNavigationBar() {
+    let rightItem = UIButton().then {
+      $0.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
+      
+      let buttonActions: [UIAction] = SortOption.allCases.map { option in
+        UIAction(title: option.rawValue, handler: { _ in self.tappedSortButton(option)})
+      }
+      
+      let buttonMenu = UIMenu(title: "", children: buttonActions)
+      $0.menu = buttonMenu
+      $0.showsMenuAsPrimaryAction = true
+    }
+    
+    navigationItem.rightBarButtonItems = [
+      UIBarButtonItem(customView: rightItem)
+    ]
+  }
+  
+  
+  func tappedSortButton(_ sortOption: SortOption) {
+    let ascending: Bool
+    switch sortOption {
+      // 오름차순
+    case .createDate, .title, .dueDate:
+      ascending = true
+      
+      // 내림차순
+    case .priority:
+      ascending = false
+    }
+    
+    sortTodoItems(by: sortOption, ascending: ascending)
     
   }
   
@@ -76,7 +107,7 @@ final class TodoItemListViewController: BaseViewController {
 extension TodoItemListViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    list?.count ?? 0
+    todoItems?.count ?? 0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,7 +116,7 @@ extension TodoItemListViewController: UITableViewDelegate, UITableViewDataSource
       return .init()
     }
     
-    let model = list?[indexPath.row]
+    let model = todoItems?[indexPath.row]
     
     cell.config(title: model?.title, memo: model?.memo, dueDate: model?.dueDate, priority: model?.priority, tag: model?.tag, isDone: true)
     return cell
@@ -101,6 +132,29 @@ extension TodoItemListViewController: UITableViewDelegate, UITableViewDataSource
 }
 
 extension TodoItemListViewController {
+  
+  enum SortOption: String, CaseIterable {
+    case createDate = "생성날짜"
+    case dueDate = "마감일"
+    case priority = "우선순위"
+    case title = "제목"
+  }
+  
+  func sortTodoItems(by option: SortOption, ascending: Bool) {
+    switch option {
+    case .createDate:
+      todoItems = todoItems?.sorted(byKeyPath: "createdAt", ascending: ascending)
+    case .dueDate:
+      todoItems = todoItems?.sorted(byKeyPath: "dueDate", ascending: ascending)
+    case .priority:
+      todoItems = todoItems?.sorted(byKeyPath: "priority", ascending: ascending)
+    case .title:
+      todoItems = todoItems?.sorted(byKeyPath: "title", ascending: ascending)
+    }
+  }
+}
+
+extension TodoItemListViewController {
   func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     nil
   }
@@ -109,7 +163,7 @@ extension TodoItemListViewController {
   func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     
     
-    guard let todoItem = self.list?[indexPath.item] else {
+    guard let todoItem = self.todoItems?[indexPath.item] else {
       return nil
     }
     
