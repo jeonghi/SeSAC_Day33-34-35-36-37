@@ -212,7 +212,7 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     let object = model(at: indexPath)
     var vc: UIViewController?
     if let textRow = object as? CustomFormItem<Date> {
-      vc = DateViewController().then {
+      let vc = DateViewController().then {
         $0.selectedDate = todo.dueDate
         $0.action = { [weak self] newDate in
           self?.todo.dueDate = newDate
@@ -220,9 +220,10 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }
+      self.navigationController?.pushViewController(vc, animated: true)
     }
     else if let textRow = object as? CustomFormItem<Priority> {
-      vc = PriorityViewController().then {
+      let vc = PriorityViewController().then {
         $0.selectedPriority = todo.priority
         $0.action = { [weak self] newPriority in
           self?.todo.priority = newPriority
@@ -230,9 +231,10 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }
+      self.navigationController?.pushViewController(vc, animated: true)
     }
     else if let textRow = object as? CustomFormItem<String> {
-      vc = TagViewController().then {
+      let vc = TagViewController().then {
         $0.tag = todo.tag
         $0.action = { [weak self] newTag in
           self?.todo.tag = newTag
@@ -240,19 +242,17 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }
+      self.navigationController?.pushViewController(vc, animated: true)
     }
+    
     else if let textRow = object as? CustomFormItem<UIImage> {
-      vc = TagViewController().then {
-        $0.tag = todo.tag
-        $0.action = { [weak self] newTag in
-          self?.todo.tag = newTag
-          self?.refresh()
-          tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
+      let vc = UIImagePickerController().then {
+        $0.delegate = self
+        $0.sourceType = .photoLibrary
+        $0.allowsEditing = true
       }
+      present(vc, animated: true)
     }
-    guard let vc else { return }
-    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   //  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -262,6 +262,32 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
   //  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
   //    return 10
   //  }
+}
+
+extension FormViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    dismiss(animated: true)
+  }
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    dump(info[UIImagePickerController.InfoKey.editedImage])
+    if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+      
+      // 아래 예외 처리 필요 ⭐️
+      // 디스크에 바로 IO하는거 비효율적임 개선 필요,,;; 일단 한다. ⭐️
+      // 1) 임시로 뷰컨에서 물고 있다가, 저장할때, 비로소 디스크에 저장하고,
+      // 2) 근데,,, 이미지 업데이트하면 기존꺼는 지워야하지 않을까
+      // 3) FileManager 자체적으로 메모리 캐시를 사용하고 있는지 확인 필요,,
+      // 4) 사용하고 있지 않다면,????? 메모리 캐시 만들어서 선 저장후, 주기적으로 write back 해야하지 않을까
+      
+      let fileName = todo._id.stringValue
+      saveImageToDocument(image: pickedImage, filename: "\(fileName)")
+      todo.imagePath = fileName
+      refresh()
+    }
+    dismiss(animated: true)
+  }
 }
 
 #Preview {
