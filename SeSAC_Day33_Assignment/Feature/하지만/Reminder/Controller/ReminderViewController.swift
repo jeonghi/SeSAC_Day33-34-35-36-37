@@ -57,6 +57,7 @@ final class ReminderViewController: BaseViewController {
   func refresh() {
     let systemSection = Section.system([
       .init(groupTitle: "오늘", numberOfItems: list?.filter{Calendar.current.isDateInToday($0.dueDate ?? Date())}.count ?? 0, tintColor: .systemBlue),
+      .init(groupTitle: "예정", numberOfItems: list?.filter{Calendar.current.isDateInToday($0.dueDate ?? Date())}.count ?? 0, tintColor: .systemYellow),
       .init(iconImageName: "archivebox.circle.fill", groupTitle: "전체", numberOfItems: list?.count ?? 0, tintColor: .systemGray),
       .init(iconImageName: "checkmark.circle.fill", groupTitle: "완료됨", numberOfItems: list?.filter{$0.isDone}.count ?? 0, tintColor: .darkGray)
     ])
@@ -114,8 +115,17 @@ extension ReminderViewController {
       $0.showsMenuAsPrimaryAction = true
     }
     
+    let leftItem = UIButton().then {
+      $0.setImage(UIImage(systemName: "calendar.circle.fill"), for: .normal)
+      $0.addTarget(self, action: #selector(tappedCalendarButton), for: .touchUpInside)
+    }
+    
     navigationItem.rightBarButtonItems = [
       UIBarButtonItem(customView: rightItem)
+    ]
+    
+    navigationItem.leftBarButtonItems = [
+      UIBarButtonItem(customView: leftItem)
     ]
   }
 }
@@ -230,16 +240,17 @@ extension ReminderViewController {
 extension ReminderViewController {
   
   @objc func tappedAddNewTodoButton() { sheetNewTodo() }
-  
   @objc func tappedAddNewListButton() {}
-  
   @objc func tappedMoreButton() {}
-  
   @objc func tappedEditButton() {}
-  
   @objc func tappedTemplateButton() {}
   
-  @objc func sheetNewTodo(){
+  @objc func tappedCalendarButton() {
+    let vc = CalendarSwipeViewController()
+    present(vc.wrapToNavigationVC(), animated: true)
+  }
+  
+  @objc func sheetNewTodo() {
     let vc = FormViewController().then {
       $0.closeAction = { self.loadData() }
     }

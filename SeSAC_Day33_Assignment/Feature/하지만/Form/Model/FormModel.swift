@@ -25,7 +25,7 @@ final class FormSection {
   }
 }
 
-struct CustomFormItem<T>: FormItem {
+struct CustomFormItem<T>: FormItem{
   let title: String
   var detail: String? = nil
   let didChange: (T?) -> ()

@@ -72,6 +72,7 @@ final class TodoItemListViewController: BaseViewController {
 }
 
 extension TodoItemListViewController: UITableViewDelegate, UITableViewDataSource {
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     list?.count ?? 0
   }

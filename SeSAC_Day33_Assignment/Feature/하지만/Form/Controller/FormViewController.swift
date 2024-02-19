@@ -121,7 +121,8 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
         ]),
         FormSection(items: [CustomFormItem(title: "마감일", detail: self.todo.dueDate?.toString(), didChange: { self.todo.dueDate = $0 })]),
         FormSection(items: [CustomFormItem(title: "태그", detail: self.todo.tag, didChange: { self.todo.tag = $0})]),
-        FormSection(items: [CustomFormItem(title: "우선순위", detail: self.todo.priority?.description, didChange: { self.todo.priority = $0})])
+        FormSection(items: [CustomFormItem(title: "우선순위", detail: self.todo.priority?.description, didChange: { self.todo.priority = $0})]),
+        FormSection(items: [CustomFormItem<UIImage>(title: "이미지", didChange: { _ in })])
       ]
     )
     self.form = form
@@ -193,6 +194,15 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
       }
+      else if let textRow = object as? CustomFormItem<UIImage> {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier).then {
+          $0.textLabel?.text = textRow.title
+          $0.textLabel?.textAlignment = .left
+          $0.accessoryType = .disclosureIndicator
+          $0.detailTextLabel?.text = textRow.detail ?? ""
+        }
+        return cell
+      }
     }
     return .init()
   }
@@ -204,9 +214,9 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     if let textRow = object as? CustomFormItem<Date> {
       vc = DateViewController().then {
         $0.selectedDate = todo.dueDate
-        $0.action = {
-          self.todo.dueDate = $0
-          self.refresh()
+        $0.action = { [weak self] newDate in
+          self?.todo.dueDate = newDate
+          self?.refresh()
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }
@@ -214,9 +224,9 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     else if let textRow = object as? CustomFormItem<Priority> {
       vc = PriorityViewController().then {
         $0.selectedPriority = todo.priority
-        $0.action = {
-          self.todo.priority = $0
-          self.refresh()
+        $0.action = { [weak self] newPriority in
+          self?.todo.priority = newPriority
+          self?.refresh()
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }
@@ -224,9 +234,19 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     else if let textRow = object as? CustomFormItem<String> {
       vc = TagViewController().then {
         $0.tag = todo.tag
-        $0.action = {
-          self.todo.tag = $0
-          self.refresh()
+        $0.action = { [weak self] newTag in
+          self?.todo.tag = newTag
+          self?.refresh()
+          tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+      }
+    }
+    else if let textRow = object as? CustomFormItem<UIImage> {
+      vc = TagViewController().then {
+        $0.tag = todo.tag
+        $0.action = { [weak self] newTag in
+          self?.todo.tag = newTag
+          self?.refresh()
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }

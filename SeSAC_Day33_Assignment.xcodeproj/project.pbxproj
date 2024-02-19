@@ -16,6 +16,9 @@
 		5B05808D2B7CEAF3006C1C21 /* PriorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */; };
 		5B0580902B7CF210006C1C21 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05808F2B7CF210006C1C21 /* TodoItem.swift */; };
 		5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0580912B7CF24E006C1C21 /* Priority.swift */; };
+		5B4DDE1D2B8368C300097D8A /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5B4DDE1C2B8368C300097D8A /* FSCalendar */; };
+		5B4DDE242B836FCC00097D8A /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DDE232B836FCC00097D8A /* ImageViewController.swift */; };
+		5B4DDE272B8375EF00097D8A /* CalendarSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DDE262B8375EF00097D8A /* CalendarSwipeViewController.swift */; };
 		5B55C2912B82632600C0E923 /* TodoItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55C2902B82632600C0E923 /* TodoItemListViewController.swift */; };
 		5B55C2932B82681B00C0E923 /* TodoItemListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55C2922B82681B00C0E923 /* TodoItemListTableViewCell.swift */; };
 		5B55C2952B82748800C0E923 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55C2942B82748800C0E923 /* Date+Extension.swift */; };
@@ -25,7 +28,6 @@
 		5B5F00B32B81FDA200B6A79A /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */; };
 		5B5F00B52B81FE3700B6A79A /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B42B81FE3700B6A79A /* FormViewController.swift */; };
 		5B5F00B82B8203C000B6A79A /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B72B8203C000B6A79A /* FormModel.swift */; };
-		5B5F00BA2B8203DA00B6A79A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B92B8203DA00B6A79A /* Note.swift */; };
 		5B5F00BC2B8204E200B6A79A /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */; };
 		5B5F00BF2B8207FB00B6A79A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */; };
 		5B5F00C32B82198C00B6A79A /* RemindListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00C22B82198C00B6A79A /* RemindListCollectionViewCell.swift */; };
@@ -51,10 +53,9 @@
 		5B62BC8D2B7CA2C20099A85F /* BaseViewConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC8C2B7CA2C20099A85F /* BaseViewConfigurable.swift */; };
 		5B62BC8F2B7CA2DD0099A85F /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC8E2B7CA2DD0099A85F /* BaseCollectionViewCell.swift */; };
 		5B62BC922B7CA36F0099A85F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC912B7CA36F0099A85F /* BaseView.swift */; };
+		5B7CBCBF2B82FFAB00159B92 /* UIViewController+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */; };
 		5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */; };
-		5B9AAA562B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */; };
 		5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */; };
-		5B9AAA5A2B7E378400AF25F1 /* MemoTextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */; };
 		5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityView.swift; sourceTree = "<group>"; };
 		5B05808F2B7CF210006C1C21 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		5B0580912B7CF24E006C1C21 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		5B4DDE232B836FCC00097D8A /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		5B4DDE262B8375EF00097D8A /* CalendarSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSwipeViewController.swift; sourceTree = "<group>"; };
 		5B55C2902B82632600C0E923 /* TodoItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemListViewController.swift; sourceTree = "<group>"; };
 		5B55C2922B82681B00C0E923 /* TodoItemListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemListTableViewCell.swift; sourceTree = "<group>"; };
 		5B55C2942B82748800C0E923 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -77,7 +80,6 @@
 		5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		5B5F00B42B81FE3700B6A79A /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		5B5F00B72B8203C000B6A79A /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
-		5B5F00B92B8203DA00B6A79A /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		5B5F00C22B82198C00B6A79A /* RemindListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -100,10 +102,9 @@
 		5B62BC8C2B7CA2C20099A85F /* BaseViewConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewConfigurable.swift; sourceTree = "<group>"; };
 		5B62BC8E2B7CA2DD0099A85F /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B62BC912B7CA36F0099A85F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FileManager.swift"; sourceTree = "<group>"; };
 		5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
-		5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTextViewTableViewCell.swift; sourceTree = "<group>"; };
 		5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B61035A2B7DF68D00E72D12 /* RealmSwift in Frameworks */,
+				5B4DDE1D2B8368C300097D8A /* FSCalendar in Frameworks */,
 				5B6103582B7DF68D00E72D12 /* Realm in Frameworks */,
 				5B62BC6E2B7C9B2F0099A85F /* SnapKit in Frameworks */,
 				5B5F00C62B822E9800B6A79A /* Toast in Frameworks */,
@@ -123,20 +125,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B05806F2B7CDFDE006C1C21 /* Todo */ = {
+		5B05806F2B7CDFDE006C1C21 /* TodoScene */ = {
 			isa = PBXGroup;
 			children = (
-				5B05807B2B7CEA93006C1C21 /* Priority */,
-				5B05807A2B7CEA8A006C1C21 /* Tag */,
-				5B0580792B7CEA80006C1C21 /* Date */,
+				5B4DDE1F2B836F6600097D8A /* TodoItemList */,
+				5B62BC792B7CA2260099A85F /* Reminder */,
 				5B0580782B7CEA77006C1C21 /* Form */,
 			);
-			path = Todo;
+			name = TodoScene;
+			path = "하지만";
 			sourceTree = "<group>";
 		};
 		5B0580702B7CDFEB006C1C21 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5B4DDE252B836FD300097D8A /* New Group */,
 				5B5F00B42B81FE3700B6A79A /* FormViewController.swift */,
 			);
 			path = Controller;
@@ -161,79 +164,48 @@
 			path = Form;
 			sourceTree = "<group>";
 		};
-		5B0580792B7CEA80006C1C21 /* Date */ = {
+		5B4DDE1F2B836F6600097D8A /* TodoItemList */ = {
 			isa = PBXGroup;
 			children = (
-				5B0580812B7CEAC1006C1C21 /* Controller */,
-				5B0580802B7CEABD006C1C21 /* View */,
+				5B4DDE212B836F7F00097D8A /* View */,
+				5B4DDE202B836F6F00097D8A /* Controller */,
 			);
-			path = Date;
+			path = TodoItemList;
 			sourceTree = "<group>";
 		};
-		5B05807A2B7CEA8A006C1C21 /* Tag */ = {
+		5B4DDE202B836F6F00097D8A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B05807F2B7CEAB7006C1C21 /* Controller */,
-				5B05807E2B7CEAB2006C1C21 /* View */,
+				5B55C2902B82632600C0E923 /* TodoItemListViewController.swift */,
 			);
-			path = Tag;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		5B05807B2B7CEA93006C1C21 /* Priority */ = {
+		5B4DDE212B836F7F00097D8A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5B05807D2B7CEAA1006C1C21 /* View */,
-				5B05807C2B7CEA9A006C1C21 /* Controller */,
+				5B4DDE222B836F8300097D8A /* Cell */,
 			);
-			path = Priority;
+			path = View;
 			sourceTree = "<group>";
 		};
-		5B05807C2B7CEA9A006C1C21 /* Controller */ = {
+		5B4DDE222B836F8300097D8A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5B55C2922B82681B00C0E923 /* TodoItemListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5B4DDE252B836FD300097D8A /* New Group */ = {
 			isa = PBXGroup;
 			children = (
 				5B05808A2B7CEAEC006C1C21 /* PriorityViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		5B05807D2B7CEAA1006C1C21 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5B05807E2B7CEAB2006C1C21 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5B0580862B7CEADD006C1C21 /* TagView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5B05807F2B7CEAB7006C1C21 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				5B0580882B7CEAE2006C1C21 /* TagViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		5B0580802B7CEABD006C1C21 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5B0580842B7CEAD8006C1C21 /* DateView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5B0580812B7CEAC1006C1C21 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 				5B0580822B7CEAD4006C1C21 /* DateViewController.swift */,
+				5B0580882B7CEAE2006C1C21 /* TagViewController.swift */,
+				5B4DDE232B836FCC00097D8A /* ImageViewController.swift */,
 			);
-			path = Controller;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		5B5F00A92B81CD8D00B6A79A /* ColorPicker */ = {
@@ -252,14 +224,13 @@
 			path = EmojiButton;
 			sourceTree = "<group>";
 		};
-		5B5F00AF2B81F36300B6A79A /* Model */ = {
+		5B5F00AF2B81F36300B6A79A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				5B0580912B7CF24E006C1C21 /* Priority.swift */,
 				5B05808F2B7CF210006C1C21 /* TodoItem.swift */,
-				5B5F00B92B8203DA00B6A79A /* Note.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		5B5F00B62B8203B800B6A79A /* Model */ = {
@@ -273,6 +244,9 @@
 		5B5F00BD2B8207E800B6A79A /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */,
+				5B0580862B7CEADD006C1C21 /* TagView.swift */,
+				5B0580842B7CEAD8006C1C21 /* DateView.swift */,
 				5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */,
 			);
 			path = Component;
@@ -290,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				5B5F00C22B82198C00B6A79A /* RemindListCollectionViewCell.swift */,
-				5B55C2922B82681B00C0E923 /* TodoItemListTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -315,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				5B5F00C02B820F7500B6A79A /* Persistence */,
-				5B5F00AF2B81F36300B6A79A /* Model */,
+				5B5F00AF2B81F36300B6A79A /* Entity */,
 				5B62BC782B7CA21B0099A85F /* Feature */,
 				5B62BC752B7C9DB60099A85F /* Extension */,
 				5B62BC722B7C9B640099A85F /* Manager */,
@@ -348,6 +321,7 @@
 				5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */,
 				5B5F00B02B81F9E900B6A79A /* UITableViewCell+Extension.swift */,
 				5B55C2942B82748800C0E923 /* Date+Extension.swift */,
+				5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -358,8 +332,7 @@
 				5B5F00AC2B81D47400B6A79A /* EmojiButton */,
 				5B5F00A92B81CD8D00B6A79A /* ColorPicker */,
 				5B62BC842B7CA2660099A85F /* Common */,
-				5B05806F2B7CDFDE006C1C21 /* Todo */,
-				5B62BC792B7CA2260099A85F /* Reminder */,
+				5B05806F2B7CDFDE006C1C21 /* TodoScene */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -377,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				5B62BC7A2B7CA2300099A85F /* ReminderViewController.swift */,
-				5B55C2902B82632600C0E923 /* TodoItemListViewController.swift */,
+				5B4DDE262B8375EF00097D8A /* CalendarSwipeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -423,8 +396,6 @@
 		5B9AAA522B7E2B4100AF25F1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				5B9AAA552B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift */,
-				5B9AAA592B7E378400AF25F1 /* MemoTextViewTableViewCell.swift */,
 				5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */,
 				5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */,
 			);
@@ -453,6 +424,7 @@
 				5B6103572B7DF68D00E72D12 /* Realm */,
 				5B6103592B7DF68D00E72D12 /* RealmSwift */,
 				5B5F00C52B822E9800B6A79A /* Toast */,
+				5B4DDE1C2B8368C300097D8A /* FSCalendar */,
 			);
 			productName = SeSAC_Day33_Assignment;
 			productReference = 5B62BC552B7C9A270099A85F /* SeSAC_Day33_Assignment.app */;
@@ -487,6 +459,7 @@
 				5B62BC6F2B7C9B520099A85F /* XCRemoteSwiftPackageReference "Then" */,
 				5B6103562B7DF68D00E72D12 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5B5F00C42B822E9800B6A79A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				5B4DDE1B2B8368C300097D8A /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 5B62BC562B7C9A270099A85F /* Products */;
 			projectDirPath = "";
@@ -523,7 +496,6 @@
 				5B62BC922B7CA36F0099A85F /* BaseView.swift in Sources */,
 				5B55C2932B82681B00C0E923 /* TodoItemListTableViewCell.swift in Sources */,
 				5B62BC5D2B7C9A270099A85F /* ViewController.swift in Sources */,
-				5B9AAA562B7E2D3D00AF25F1 /* TitleTextFieldTableViewCell.swift in Sources */,
 				5B05808B2B7CEAEC006C1C21 /* PriorityViewController.swift in Sources */,
 				5B0580752B7CE004006C1C21 /* NewTodoView.swift in Sources */,
 				5B62BC592B7C9A270099A85F /* AppDelegate.swift in Sources */,
@@ -538,6 +510,7 @@
 				5B62BC8F2B7CA2DD0099A85F /* BaseCollectionViewCell.swift in Sources */,
 				5B62BC882B7CA2960099A85F /* NSObject+id.swift in Sources */,
 				5B62BC802B7CA24C0099A85F /* ReminderView.swift in Sources */,
+				5B4DDE242B836FCC00097D8A /* ImageViewController.swift in Sources */,
 				5B5F00B12B81F9E900B6A79A /* UITableViewCell+Extension.swift in Sources */,
 				5B0580892B7CEAE2006C1C21 /* TagViewController.swift in Sources */,
 				5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */,
@@ -547,14 +520,14 @@
 				5B62BC772B7C9DC80099A85F /* UIViewController+Extension.swift in Sources */,
 				5B62BC8D2B7CA2C20099A85F /* BaseViewConfigurable.swift in Sources */,
 				5B62BC5B2B7C9A270099A85F /* SceneDelegate.swift in Sources */,
-				5B9AAA5A2B7E378400AF25F1 /* MemoTextViewTableViewCell.swift in Sources */,
 				5B0580852B7CEAD8006C1C21 /* DateView.swift in Sources */,
+				5B4DDE272B8375EF00097D8A /* CalendarSwipeViewController.swift in Sources */,
 				5B5F00B82B8203C000B6A79A /* FormModel.swift in Sources */,
-				5B5F00BA2B8203DA00B6A79A /* Note.swift in Sources */,
 				5B5F00C32B82198C00B6A79A /* RemindListCollectionViewCell.swift in Sources */,
 				5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */,
 				5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */,
 				5B0580872B7CEADD006C1C21 /* TagView.swift in Sources */,
+				5B7CBCBF2B82FFAB00159B92 /* UIViewController+FileManager.swift in Sources */,
 				5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -780,6 +753,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5B4DDE1B2B8368C300097D8A /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
 		5B5F00C42B822E9800B6A79A /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
@@ -815,6 +796,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5B4DDE1C2B8368C300097D8A /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B4DDE1B2B8368C300097D8A /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		5B5F00C52B822E9800B6A79A /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5B5F00C42B822E9800B6A79A /* XCRemoteSwiftPackageReference "Toast-Swift" */;
