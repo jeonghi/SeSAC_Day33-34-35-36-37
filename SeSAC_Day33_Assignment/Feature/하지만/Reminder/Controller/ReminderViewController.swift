@@ -91,7 +91,7 @@ extension ReminderViewController {
       title: "목록추가",
       style: .plain,
       target: self,
-      action: #selector(tappedAddNewListButton)
+      action: #selector(tappedAddNewTodoDocumentButton)
     )
     
     toolbarItems = [UIBarButtonItem(customView: leftItem),.flexibleSpace(),rightItem]
@@ -112,12 +112,7 @@ extension ReminderViewController {
 //      $0.showsMenuAsPrimaryAction = true
 //    }
     
-    let leftItem = UIButton().then {
-      $0.setImage(UIImage(systemName: "calendar.circle.fill"), for: .normal)
-      $0.addTarget(self, action: #selector(tappedCalendarButton), for: .touchUpInside)
-    }
-    
-    
+    let leftItem = UIBarButtonItem(image: UIImage(systemName: "calendar.circle.fill"), style: .plain, target: self, action:  #selector(tappedCalendarButton))
     
     navigationItem.rightBarButtonItems = [
 //      UIBarButtonItem(customView: rightItem)
@@ -125,15 +120,15 @@ extension ReminderViewController {
     ]
     
     navigationItem.leftBarButtonItems = [
-      UIBarButtonItem(customView: leftItem)
+      leftItem
     ]
   }
   
   func buttomMenuBuilder() -> UIBarButtonItem {
     let button = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle.fill"), style: .done, target: self, action: nil)
     let edit = UIAction(title: "목록 편집", image: UIImage(systemName: "square.on.square"), handler: { _ in })
-    let template = UIAction(title: "템플릿", image: UIImage(systemName: "pencil"), handler: { _ in })
-    let buttonMenu = UIMenu(title: "", children: [edit, template])
+//    let template = UIAction(title: "템플릿", image: UIImage(systemName: "pencil"), handler: { _ in })
+    let buttonMenu = UIMenu(title: "", children: [edit])
     button.menu = buttonMenu
     return button
   }
@@ -299,7 +294,7 @@ extension ReminderViewController {
 extension ReminderViewController {
   
   @objc func tappedAddNewTodoButton() { sheetNewTodo() }
-  @objc func tappedAddNewListButton() {}
+  @objc func tappedAddNewTodoDocumentButton() { sheetNewTodoDocument() }
   @objc func tappedMoreButton() {}
   @objc func tappedEditButton() {}
   @objc func tappedTemplateButton() {}
@@ -310,10 +305,18 @@ extension ReminderViewController {
   }
   
   @objc func sheetNewTodo() {
-    let vc = FormViewController().then {
+    let vc = TodoFormViewController().then {
       $0.closeAction = { self.loadData() }
     }
     vc.navigationItem.title = "새로운 할 일"
+    present(vc.wrapToNavigationVC(), animated: true)
+  }
+  
+  @objc func sheetNewTodoDocument() {
+    let vc = TodoDocumentFormViewController().then {
+      $0.closeAction = { self.loadData() }
+    }
+    vc.navigationItem.title = "새로운 목록"
     present(vc.wrapToNavigationVC(), animated: true)
   }
 }

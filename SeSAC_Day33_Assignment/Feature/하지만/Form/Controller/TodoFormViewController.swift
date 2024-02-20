@@ -9,7 +9,7 @@ import UIKit
 import Then
 import Toast
 
-final class FormViewController: BaseViewController {
+final class TodoFormViewController: BaseViewController {
   
   // MARK: Creating a Form View
   
@@ -110,7 +110,7 @@ final class FormViewController: BaseViewController {
   }
 }
 
-extension FormViewController: UITableViewDelegate, UITableViewDataSource {
+extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
   // MARK: Providing Table View Content
   func refresh() {
     self.form = formBuilder(for: self.todo)
@@ -314,7 +314,7 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
   //  }
 }
 
-extension FormViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension TodoFormViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     dismiss(animated: true)
@@ -342,5 +342,5 @@ extension FormViewController: UIImagePickerControllerDelegate, UINavigationContr
 }
 
 #Preview {
-  FormViewController(todo: .init(title: "하하")).wrapToNavigationVC()
+  TodoFormViewController(todo: .init(title: "하하")).wrapToNavigationVC()
 }

@@ -95,7 +95,7 @@ final class TodoItemListViewController: BaseViewController {
   }
   
   func sheetEditTodo(_ todoItem: TodoItem) {
-    let vc = FormViewController(todo: todoItem).then {
+    let vc = TodoFormViewController(todo: todoItem).then {
       $0.closeAction = {}
     }
     vc.navigationItem.title = "할 일 수정하기"

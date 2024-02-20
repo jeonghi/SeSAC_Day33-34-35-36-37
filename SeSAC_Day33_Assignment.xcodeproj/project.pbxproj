@@ -25,7 +25,7 @@
 		5B5F00AE2B81D48900B6A79A /* EmojiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00AD2B81D48900B6A79A /* EmojiButton.swift */; };
 		5B5F00B12B81F9E900B6A79A /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B02B81F9E900B6A79A /* UITableViewCell+Extension.swift */; };
 		5B5F00B32B81FDA200B6A79A /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */; };
-		5B5F00B52B81FE3700B6A79A /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B42B81FE3700B6A79A /* FormViewController.swift */; };
+		5B5F00B52B81FE3700B6A79A /* TodoFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B42B81FE3700B6A79A /* TodoFormViewController.swift */; };
 		5B5F00B82B8203C000B6A79A /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00B72B8203C000B6A79A /* FormModel.swift */; };
 		5B5F00BC2B8204E200B6A79A /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */; };
 		5B5F00BF2B8207FB00B6A79A /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */; };
@@ -57,6 +57,7 @@
 		5B85D3C02B84A5BD00363065 /* ViewEmbedder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85D3BF2B84A5BD00363065 /* ViewEmbedder.swift */; };
 		5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */; };
 		5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */; };
+		5BB3044A2B84F7BF000F5B21 /* TodoDocumentFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB304492B84F7BF000F5B21 /* TodoDocumentFormViewController.swift */; };
 		5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +79,7 @@
 		5B5F00AD2B81D48900B6A79A /* EmojiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiButton.swift; sourceTree = "<group>"; };
 		5B5F00B02B81F9E900B6A79A /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
-		5B5F00B42B81FE3700B6A79A /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		5B5F00B42B81FE3700B6A79A /* TodoFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFormViewController.swift; sourceTree = "<group>"; };
 		5B5F00B72B8203C000B6A79A /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		5B5F00BE2B8207FB00B6A79A /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		5B85D3BF2B84A5BD00363065 /* ViewEmbedder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEmbedder.swift; sourceTree = "<group>"; };
 		5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		5BB304492B84F7BF000F5B21 /* TodoDocumentFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocumentFormViewController.swift; sourceTree = "<group>"; };
 		5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,8 +143,9 @@
 		5B0580702B7CDFEB006C1C21 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B4DDE252B836FD300097D8A /* New Group */,
-				5B5F00B42B81FE3700B6A79A /* FormViewController.swift */,
+				5B4DDE252B836FD300097D8A /* TodoFormDetail */,
+				5B5F00B42B81FE3700B6A79A /* TodoFormViewController.swift */,
+				5BB304492B84F7BF000F5B21 /* TodoDocumentFormViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,14 +202,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		5B4DDE252B836FD300097D8A /* New Group */ = {
+		5B4DDE252B836FD300097D8A /* TodoFormDetail */ = {
 			isa = PBXGroup;
 			children = (
 				5B05808A2B7CEAEC006C1C21 /* PriorityViewController.swift */,
 				5B0580822B7CEAD4006C1C21 /* DateViewController.swift */,
 				5B0580882B7CEAE2006C1C21 /* TagViewController.swift */,
 			);
-			path = "New Group";
+			path = TodoFormDetail;
 			sourceTree = "<group>";
 		};
 		5B5F00A92B81CD8D00B6A79A /* ColorPicker */ = {
@@ -511,7 +514,7 @@
 				5B0580752B7CE004006C1C21 /* NewTodoView.swift in Sources */,
 				5B62BC592B7C9A270099A85F /* AppDelegate.swift in Sources */,
 				5B55C2952B82748800C0E923 /* Date+Extension.swift in Sources */,
-				5B5F00B52B81FE3700B6A79A /* FormViewController.swift in Sources */,
+				5B5F00B52B81FE3700B6A79A /* TodoFormViewController.swift in Sources */,
 				5B62BC7B2B7CA2300099A85F /* ReminderViewController.swift in Sources */,
 				5B62BC742B7C9B700099A85F /* NotificationManager.swift in Sources */,
 				5B0580902B7CF210006C1C21 /* TodoItem.swift in Sources */,
@@ -521,6 +524,7 @@
 				5B62BC8F2B7CA2DD0099A85F /* BaseCollectionViewCell.swift in Sources */,
 				5B62BC882B7CA2960099A85F /* NSObject+id.swift in Sources */,
 				5B85D3BB2B841CFC00363065 /* ImageTableViewCell.swift in Sources */,
+				5BB3044A2B84F7BF000F5B21 /* TodoDocumentFormViewController.swift in Sources */,
 				5B62BC802B7CA24C0099A85F /* ReminderView.swift in Sources */,
 				5B5F00B12B81F9E900B6A79A /* UITableViewCell+Extension.swift in Sources */,
 				5B0580892B7CEAE2006C1C21 /* TagViewController.swift in Sources */,
