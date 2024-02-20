@@ -113,48 +113,52 @@ final class FormViewController: BaseViewController {
 extension FormViewController: UITableViewDelegate, UITableViewDataSource {
   // MARK: Providing Table View Content
   func refresh() {
-    let form = Form(
+    self.form = formBuilder(for: self.todo)
+  }
+  
+  func formBuilder(for todoItem: TodoItem) -> Form {
+    Form(
       sections: [
         FormSection(
           items: [
             TextInputFormItem(
-              text: self.todo.title,
+              text: todoItem.title,
               placeholder: "제목",
               didChange: {
-                self.todo.title = $0
+                todoItem.title = $0
               }),
-            TextViewFormItem(text: self.todo.memo ?? "",
+            TextViewFormItem(text: todoItem.memo ?? "",
                              placeholder: "메모",
                              didChange: {
-                               self.todo.memo = $0
+                               todoItem.memo = $0
                              })
           ]
         ),
         FormSection(
           items: [CustomFormItem(title: "마감일",
-                                 detail: self.todo.dueDate?.toString(),
+                                 detail: todoItem.dueDate?.toString(),
                                  didChange: {
-                                   self.todo.dueDate = $0
+                                   todoItem.dueDate = $0
                                  })]
         ),
         FormSection(
           items: [CustomFormItem(title: "태그",
-                                 detail: self.todo.tag,
+                                 detail: todoItem.tag,
                                  didChange: {
-                                   self.todo.tag = $0
+                                   todoItem.tag = $0
                                  })]
         ),
         FormSection(
           items: [CustomFormItem(title: "우선순위",
-                                 detail: self.todo.priority?.description,
+                                 detail: todoItem.priority?.description,
                                  didChange: {
-                                   self.todo.priority = $0
+                                   todoItem.priority = $0
                                  })]
         ),
         FormSection(items: {
           var items: [FormItem] = [CustomFormItem<UIImage>(title: "이미지",
                                                didChange: { _ in })]
-          if let fileName = self.todo.imagePath {
+          if let fileName = todoItem.imagePath {
             if let image = loadImageFromDocument(filename: fileName) {
               items.append(ImageDisplayFormItem(image: image))
               print("있음1")
@@ -166,7 +170,6 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
         ),
       ]
     )
-    self.form = form
   }
   
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

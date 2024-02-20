@@ -12,7 +12,7 @@ import Then
 final class ImageTableViewCell: BaseTableViewCell {
   
   var imgView: UIImageView = UIImageView().then {
-    $0.contentMode = .scaleAspectFill
+    $0.contentMode = .scaleAspectFit
   }
   
   // MARK: Initializing a Cell
@@ -30,6 +30,7 @@ final class ImageTableViewCell: BaseTableViewCell {
       $0.height.equalTo(240)
       $0.horizontalEdges.equalToSuperview()
       $0.center.equalToSuperview()
+      $0.verticalEdges.equalToSuperview()
     }
   }
   

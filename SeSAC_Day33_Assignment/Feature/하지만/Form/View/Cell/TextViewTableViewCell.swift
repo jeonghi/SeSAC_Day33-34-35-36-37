@@ -34,6 +34,7 @@ final class TextViewTableViewCell: BaseTableViewCell {
       $0.centerY.equalToSuperview()
       $0.leading.trailing.equalTo(layoutMarginsGuide)
       $0.height.greaterThanOrEqualTo(80)
+      $0.verticalEdges.equalToSuperview()
     }
   }
   
