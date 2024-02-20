@@ -15,11 +15,14 @@ class PriorityViewController: BaseViewController {
   
   var selectedPriority: Priority? {
     get {
-      Priority(rawValue: priorityView.segmentControl.selectedSegmentIndex + 1)
+      let prior = Priority(rawValue: priorityView.segmentControl.selectedSegmentIndex)
+      print(priorityView.segmentControl.selectedSegmentIndex)
+      print(prior)
+      return prior
     }
     
     set {
-      self.priorityView.segmentControl.selectedSegmentIndex = newValue?.rawValue ?? 0 + 1
+      self.priorityView.segmentControl.selectedSegmentIndex = newValue?.rawValue ?? 0
     }
   }
   var action: ((Priority?) -> Void)? {

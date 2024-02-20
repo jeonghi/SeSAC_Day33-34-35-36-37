@@ -35,7 +35,7 @@ class PriorityView: BaseView {
   }
   
   @objc func segmentValueChanged(_ sender: UISegmentedControl) {
-    let selectedPriority = Priority(rawValue: sender.selectedSegmentIndex + 1)
+    let selectedPriority = Priority(rawValue: sender.selectedSegmentIndex)
     action?(selectedPriority)
   }
 }

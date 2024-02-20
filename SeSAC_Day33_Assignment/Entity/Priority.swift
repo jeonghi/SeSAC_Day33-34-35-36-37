@@ -8,9 +8,9 @@
 import RealmSwift
 
 enum Priority: Int, CaseIterable {
-  case high = 2 // 상
+  case high = 0 // 상
   case medium = 1 // 중
-  case low = 0 // 하
+  case low = 2 // 하
   
   var description: String {
     switch self {
