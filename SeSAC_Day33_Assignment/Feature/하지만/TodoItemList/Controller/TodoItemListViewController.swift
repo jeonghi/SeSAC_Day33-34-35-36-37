@@ -14,7 +14,11 @@ final class TodoItemListViewController: BaseViewController {
   
   var todoRepository: TodoRepository = TodoRepositoryImpl()
   
-  var defaultPredicate: NSPredicate?
+  var defaultPredicate: NSPredicate? {
+    didSet {
+      self.filterTodoItems(by: defaultPredicate)
+    }
+  }
   
   var todoItems: Results<TodoItem>? {
     didSet {
@@ -36,7 +40,7 @@ final class TodoItemListViewController: BaseViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    todoItems = todoRepository.readFiltered(by: defaultPredicate ?? NSPredicate(value: true))
+    filterTodoItems(by: defaultPredicate)
   }
   
   override func viewDidLayoutSubviews() {
@@ -88,7 +92,6 @@ final class TodoItemListViewController: BaseViewController {
     }
     
     sortTodoItems(by: sortOption, ascending: ascending)
-    
   }
   
   func sheetEditTodo(_ todoItem: TodoItem) {
@@ -151,6 +154,9 @@ extension TodoItemListViewController {
     case .title:
       todoItems = todoItems?.sorted(byKeyPath: "title", ascending: ascending)
     }
+  }
+  func filterTodoItems(by option: NSPredicate?) {
+    todoItems = todoRepository.readFiltered(by: option ?? NSPredicate(value: true))
   }
 }
 

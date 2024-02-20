@@ -16,6 +16,8 @@ final class ReminderView: BaseView {
     $0.sectionInset = .init(top: 10, left: 10, bottom: 10, right: 10)
   })
   
+  
+  
   override func configView() {
     backgroundColor = .white
   }

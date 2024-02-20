@@ -103,27 +103,39 @@ extension ReminderViewController {
     // 후속 뷰에서는 적용안되도록 설정
     navigationItem.largeTitleDisplayMode = .always
     
-    let rightItem = UIButton().then {
-      $0.setImage(UIImage(systemName: "ellipsis.circle.fill"), for: .normal)
-      let edit = UIAction(title: "목록 편집", image: UIImage(systemName: "square.on.square"), handler: { _ in })
-      let template = UIAction(title: "템플릿", image: UIImage(systemName: "pencil"), handler: { _ in })
-      let buttonMenu = UIMenu(title: "", children: [edit, template])
-      $0.menu = buttonMenu
-      $0.showsMenuAsPrimaryAction = true
-    }
+//    let rightItem = UIButton().then {
+//      $0.setImage(UIImage(systemName: "ellipsis.circle.fill"), for: .normal)
+//      let edit = UIAction(title: "목록 편집", image: UIImage(systemName: "square.on.square"), handler: { _ in })
+//      let template = UIAction(title: "템플릿", image: UIImage(systemName: "pencil"), handler: { _ in })
+//      let buttonMenu = UIMenu(title: "", children: [edit, template])
+//      $0.menu = buttonMenu
+//      $0.showsMenuAsPrimaryAction = true
+//    }
     
     let leftItem = UIButton().then {
       $0.setImage(UIImage(systemName: "calendar.circle.fill"), for: .normal)
       $0.addTarget(self, action: #selector(tappedCalendarButton), for: .touchUpInside)
     }
     
+    
+    
     navigationItem.rightBarButtonItems = [
-      UIBarButtonItem(customView: rightItem)
+//      UIBarButtonItem(customView: rightItem)
+      buttomMenuBuilder()
     ]
     
     navigationItem.leftBarButtonItems = [
       UIBarButtonItem(customView: leftItem)
     ]
+  }
+  
+  func buttomMenuBuilder() -> UIBarButtonItem {
+    let button = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle.fill"), style: .done, target: self, action: nil)
+    let edit = UIAction(title: "목록 편집", image: UIImage(systemName: "square.on.square"), handler: { _ in })
+    let template = UIAction(title: "템플릿", image: UIImage(systemName: "pencil"), handler: { _ in })
+    let buttonMenu = UIMenu(title: "", children: [edit, template])
+    button.menu = buttonMenu
+    return button
   }
 }
 
@@ -294,7 +306,7 @@ extension ReminderViewController {
   
   @objc func tappedCalendarButton() {
     let vc = CalendarSwipeViewController()
-    present(vc.wrapToNavigationVC(), animated: true)
+    self.navigationController?.pushViewController(vc, animated: true)
   }
   
   @objc func sheetNewTodo() {

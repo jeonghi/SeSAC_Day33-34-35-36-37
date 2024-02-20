@@ -27,7 +27,8 @@ final class ImageTableViewCell: BaseTableViewCell {
   
   override func configLayout() {
     imgView.snp.makeConstraints {
-      $0.height.equalTo(240)
+      $0.width.equalToSuperview()
+      $0.height.equalTo(imgView.snp.width)
       $0.horizontalEdges.equalToSuperview()
       $0.center.equalToSuperview()
       $0.verticalEdges.equalToSuperview()

@@ -9,6 +9,7 @@ import RealmSwift
 import Foundation
 
 class TodoItem: Object {
+  
   @Persisted(primaryKey: true) var _id: ObjectId = ObjectId.generate()
   @Persisted var title: String
   @Persisted var memo: String?

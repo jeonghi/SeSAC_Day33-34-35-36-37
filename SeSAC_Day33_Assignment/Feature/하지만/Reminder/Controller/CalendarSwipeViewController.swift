@@ -40,6 +40,7 @@ class CalendarSwipeViewController: BaseViewController {
   // MARK: Configurate
   override func configView() {
     configSwipeGesture()
+    view.backgroundColor = .white
 //    configNavigationBar()
   }
   override func configLayout() {
@@ -59,9 +60,15 @@ class CalendarSwipeViewController: BaseViewController {
     
     if swipe.direction == .up {
       calendarView.setScope(.week, animated: true)
+      UIView.animate(withDuration: 0.5) {
+        self.view.layoutIfNeeded()
+      }
     }
     else if swipe.direction == .down {
       calendarView.setScope(.month, animated: true)
+      UIView.animate(withDuration: 0.5) {
+        self.view.layoutIfNeeded()
+      }
     }
   }
   
@@ -77,10 +84,7 @@ class CalendarSwipeViewController: BaseViewController {
     self.view.addGestureRecognizer(swipeDown)
   }
   func configNavigationBar() {
-    let closeButton = UIBarButtonItem(title: "닫기", image: UIImage(systemName: "xmark"), target: self, action: #selector(tappedCloseButton)).then {
-      $0.tintColor = .black
-    }
-    navigationItem.rightBarButtonItems = [closeButton]
+//    navigationItem.
   }
   
   @objc func tappedCloseButton(_ sender: Any){

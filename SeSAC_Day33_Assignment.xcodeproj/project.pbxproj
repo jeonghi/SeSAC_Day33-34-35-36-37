@@ -54,6 +54,7 @@
 		5B62BC922B7CA36F0099A85F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC912B7CA36F0099A85F /* BaseView.swift */; };
 		5B7CBCBF2B82FFAB00159B92 /* UIViewController+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */; };
 		5B85D3BB2B841CFC00363065 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85D3BA2B841CFC00363065 /* ImageTableViewCell.swift */; };
+		5B85D3C02B84A5BD00363065 /* ViewEmbedder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85D3BF2B84A5BD00363065 /* ViewEmbedder.swift */; };
 		5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */; };
 		5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */; };
 		5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */; };
@@ -103,6 +104,7 @@
 		5B62BC912B7CA36F0099A85F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FileManager.swift"; sourceTree = "<group>"; };
 		5B85D3BA2B841CFC00363065 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		5B85D3BF2B84A5BD00363065 /* ViewEmbedder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEmbedder.swift; sourceTree = "<group>"; };
 		5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 		5B62BC842B7CA2660099A85F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5B85D3BE2B84A5B400363065 /* Wrapper */,
 				5B5F00BD2B8207E800B6A79A /* Component */,
 				5B62BC812B7CA2580099A85F /* Base */,
 			);
@@ -390,6 +393,14 @@
 				5B62BC8C2B7CA2C20099A85F /* BaseViewConfigurable.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		5B85D3BE2B84A5B400363065 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				5B85D3BF2B84A5BD00363065 /* ViewEmbedder.swift */,
+			);
+			path = Wrapper;
 			sourceTree = "<group>";
 		};
 		5B9AAA522B7E2B4100AF25F1 /* Cell */ = {
@@ -518,6 +529,7 @@
 				5B5F00C82B82307F00B6A79A /* TodoRepository.swift in Sources */,
 				5B55C2912B82632600C0E923 /* TodoItemListViewController.swift in Sources */,
 				5B62BC772B7C9DC80099A85F /* UIViewController+Extension.swift in Sources */,
+				5B85D3C02B84A5BD00363065 /* ViewEmbedder.swift in Sources */,
 				5B62BC8D2B7CA2C20099A85F /* BaseViewConfigurable.swift in Sources */,
 				5B62BC5B2B7C9A270099A85F /* SceneDelegate.swift in Sources */,
 				5B0580852B7CEAD8006C1C21 /* DateView.swift in Sources */,

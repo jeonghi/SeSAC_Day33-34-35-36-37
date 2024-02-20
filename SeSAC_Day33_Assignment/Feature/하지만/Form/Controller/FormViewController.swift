@@ -214,6 +214,7 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
     else if let textRow = object as? ImageDisplayFormItem {
       let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell.identifier, for: indexPath) as! ImageTableViewCell
       cell.configure(for: textRow)
+      cell.selectionStyle = .none
       return cell
     } else {
       if let textRow = object as? CustomFormItem<Date> {
