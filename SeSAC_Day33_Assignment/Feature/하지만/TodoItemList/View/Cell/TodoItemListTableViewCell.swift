@@ -97,7 +97,7 @@ class TodoItemListTableViewCell: BaseTableViewCell {
     priorityLabel.do {
       if let priority {
         $0.isHidden = false
-        $0.text = String(repeating: "!", count: priority.rawValue + 1)
+        $0.text = String(repeating: "!", count: Priority.allCases.count - priority.rawValue)
       } else {
         $0.isHidden = true
       }
