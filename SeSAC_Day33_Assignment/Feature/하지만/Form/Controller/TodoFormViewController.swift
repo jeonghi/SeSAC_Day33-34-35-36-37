@@ -13,7 +13,9 @@ final class TodoFormViewController: BaseViewController {
   
   // MARK: Creating a Form View
   
-  let todo: TodoItem
+  
+  var todoItem: TodoItem
+  var todoDocument: TodoDocument?
   var form: Form = .init(sections: [])
   
   var closeAction: (() -> Void)?
@@ -38,7 +40,7 @@ final class TodoFormViewController: BaseViewController {
   init(
     todo: TodoItem = .init()
   ) {
-    self.todo = todo
+    self.todoItem = todo
     super.init(
       nibName: nil,
       bundle: nil
@@ -100,20 +102,20 @@ final class TodoFormViewController: BaseViewController {
       self.view.makeToast("제목을 입력해주세요", position: .top)
       return
     }
-    todoRepository.create(todoItem: todo)
+    todoRepository.create(todoItem: todoItem)
     closeAction?()
     dismiss(animated: true)
   }
   
   func validateRequiredConditionSatisfied() -> Bool {
-    !todo.title.isEmpty
+    !todoItem.title.isEmpty
   }
 }
 
 extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
   // MARK: Providing Table View Content
   func refresh() {
-    self.form = formBuilder(for: self.todo)
+    self.form = formBuilder(for: self.todoItem)
   }
   
   func formBuilder(for todoItem: TodoItem) -> Form {
@@ -130,7 +132,7 @@ extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
             TextViewFormItem(text: todoItem.memo ?? "",
                              placeholder: "메모",
                              didChange: {
-                               todoItem.memo = $0
+                               self.todoItem.memo = $0
                              })
           ]
         ),
@@ -138,21 +140,28 @@ extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
           items: [CustomFormItem(title: "마감일",
                                  detail: todoItem.dueDate?.toString(),
                                  didChange: {
-                                   todoItem.dueDate = $0
+                                   self.todoItem.dueDate = $0
                                  })]
         ),
         FormSection(
           items: [CustomFormItem(title: "태그",
                                  detail: todoItem.tag,
                                  didChange: {
-                                   todoItem.tag = $0
+                                   self.todoItem.tag = $0
                                  })]
         ),
         FormSection(
           items: [CustomFormItem(title: "우선순위",
                                  detail: todoItem.priority?.description,
                                  didChange: {
-                                   todoItem.priority = $0
+                                   self.todoItem.priority = $0
+                                 })]
+        ),
+        FormSection(
+          items: [CustomFormItem(title: "목록",
+                                 detail: todoDocument?.name,
+                                 didChange: {
+                                   self.todoDocument = $0
                                  })]
         ),
         FormSection(items: {
@@ -253,6 +262,15 @@ extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
       }
+      else if let textRow = object as? CustomFormItem<TodoDocument> {
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: UITableViewCell.identifier).then {
+          $0.textLabel?.text = textRow.title
+          $0.textLabel?.textAlignment = .left
+          $0.accessoryType = .disclosureIndicator
+          $0.detailTextLabel?.text = textRow.detail ?? ""
+        }
+        return cell
+      }
     }
     return .init()
   }
@@ -263,9 +281,9 @@ extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
     var vc: UIViewController?
     if let textRow = object as? CustomFormItem<Date> {
       let vc = DateViewController().then {
-        $0.selectedDate = todo.dueDate
+        $0.selectedDate = todoItem.dueDate
         $0.action = { [weak self] newDate in
-          self?.todo.dueDate = newDate
+          self?.todoItem.dueDate = newDate
           self?.refresh()
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -274,9 +292,9 @@ extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
     }
     else if let textRow = object as? CustomFormItem<Priority> {
       let vc = PriorityViewController().then {
-        $0.selectedPriority = todo.priority
+        $0.selectedPriority = todoItem.priority
         $0.action = { [weak self] newPriority in
-          self?.todo.priority = newPriority
+          self?.todoItem.priority = newPriority
           self?.refresh()
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -285,10 +303,20 @@ extension TodoFormViewController: UITableViewDelegate, UITableViewDataSource {
     }
     else if let textRow = object as? CustomFormItem<String> {
       let vc = TagViewController().then {
-        $0.tag = todo.tag
-        $0.action = { [weak self] newTag in
-          self?.todo.tag = newTag
-          self?.refresh()
+        $0.tag = todoItem.tag
+        $0.action = {
+          self.todoItem.tag = $0
+          self.refresh()
+          tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+      }
+      self.navigationController?.pushViewController(vc, animated: true)
+    }
+    else if let textRow = object as? CustomFormItem<TodoDocument> {
+      let vc = TodoDocumentViewController().then {
+        $0.action = {
+          self.todoDocument = $0
+          self.refresh()
           tableView.reloadRows(at: [indexPath], with: .automatic)
         }
       }
@@ -331,9 +359,9 @@ extension TodoFormViewController: UIImagePickerControllerDelegate, UINavigationC
       // 3) FileManager 자체적으로 메모리 캐시를 사용하고 있는지 확인 필요,,
       // 4) 사용하고 있지 않다면,????? 메모리 캐시 만들어서 선 저장후, 주기적으로 write back 해야하지 않을까
       
-      let fileName = todo._id.stringValue
+      let fileName = todoItem._id.stringValue
       saveImageToDocument(image: pickedImage, filename: "\(fileName)")
-      todo.imagePath = fileName
+      todoItem.imagePath = fileName
       refresh()
       todoView.tableView.reloadData()
     }

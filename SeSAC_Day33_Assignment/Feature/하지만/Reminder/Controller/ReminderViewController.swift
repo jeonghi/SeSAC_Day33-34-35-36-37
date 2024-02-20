@@ -12,6 +12,7 @@ import RealmSwift
 final class ReminderViewController: BaseViewController {
   
   var todoRepository: TodoRepository = TodoRepositoryImpl()
+  var todoDocumentRepository: TodoDocumentRepository = TodoDocumentRepositoryImpl()
   
   lazy var remiderView = ReminderView().then {
     $0.collectionView.do {
@@ -19,11 +20,23 @@ final class ReminderViewController: BaseViewController {
       $0.delegate = self
       $0.register(RemindListCollectionViewCell.self, forCellWithReuseIdentifier: RemindListCollectionViewCell.identifier)
     }
+    
+    $0.tableView.do {
+      $0.delegate = self
+      $0.delegate = self
+      $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
+    }
   }
   
   var todoItems: Results<TodoItem>? {
     didSet {
-      refresh()
+      refreshSystemGroupData()
+    }
+  }
+  
+  var todoDocuments: Results<TodoDocument>? {
+    didSet {
+      refreshDocumentData()
     }
   }
   
@@ -46,7 +59,7 @@ final class ReminderViewController: BaseViewController {
   override func configView() {
     configToolBar()
     configNavigationBar()
-    refresh()
+    refreshSystemGroupData()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +67,7 @@ final class ReminderViewController: BaseViewController {
     loadData()
   }
   
-  func refresh() {
+  func refreshSystemGroupData() {
     let systemSection = Section.system(
       FilterOption.allCases.map{ListModel(filterOption: $0)}
     )
@@ -65,12 +78,17 @@ final class ReminderViewController: BaseViewController {
     
     self.remiderView.collectionView.reloadData()
   }
+  
+  func refreshDocumentData() {
+    self.remiderView.tableView.reloadData()
+  }
 }
 
 // MARK:
 extension ReminderViewController {
   func loadData() {
     todoItems = todoRepository.readAll()
+    todoDocuments = todoDocumentRepository.readAll()
   }
 }
 
@@ -228,6 +246,33 @@ extension ReminderViewController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     10
+  }
+}
+
+extension ReminderViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    todoDocuments?.count ?? 0
+  }
+  
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    UITableView.automaticDimension
+  }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    guard let document = todoDocuments?[indexPath.row] else {
+      return .init()
+    }
+    
+    let cell = UITableViewCell(style: .default, reuseIdentifier: UITableViewCell.identifier)
+    cell.textLabel?.text = document.name
+    return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    guard let document = todoDocuments?[indexPath.row] else {
+      return
+    }
   }
 }
 

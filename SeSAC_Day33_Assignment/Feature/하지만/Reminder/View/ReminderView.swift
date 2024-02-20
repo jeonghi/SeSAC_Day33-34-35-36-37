@@ -16,7 +16,7 @@ final class ReminderView: BaseView {
     $0.sectionInset = .init(top: 10, left: 10, bottom: 10, right: 10)
   })
   
-  
+  lazy var tableView = UITableView(frame: .zero, style: .insetGrouped)
   
   override func configView() {
     backgroundColor = .white
@@ -24,12 +24,17 @@ final class ReminderView: BaseView {
   
   override func configLayout() {
     collectionView.snp.makeConstraints {
-      $0.edges.equalTo(safeAreaLayoutGuide)
+      $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
+      $0.height.equalTo(self.snp.height).dividedBy(2)
+    }
+    tableView.snp.makeConstraints {
+      $0.top.equalTo(collectionView.snp.bottom)
+      $0.bottom.horizontalEdges.equalTo(safeAreaLayoutGuide)
     }
   }
   
   override func configHierarchy() {
-    self.addSubviews([collectionView])
+    self.addSubviews([collectionView, tableView])
   }
 }
 
