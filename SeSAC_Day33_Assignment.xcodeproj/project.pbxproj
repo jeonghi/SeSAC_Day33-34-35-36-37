@@ -17,7 +17,6 @@
 		5B0580902B7CF210006C1C21 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B05808F2B7CF210006C1C21 /* TodoItem.swift */; };
 		5B0580922B7CF24E006C1C21 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0580912B7CF24E006C1C21 /* Priority.swift */; };
 		5B4DDE1D2B8368C300097D8A /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5B4DDE1C2B8368C300097D8A /* FSCalendar */; };
-		5B4DDE242B836FCC00097D8A /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DDE232B836FCC00097D8A /* ImageViewController.swift */; };
 		5B4DDE272B8375EF00097D8A /* CalendarSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DDE262B8375EF00097D8A /* CalendarSwipeViewController.swift */; };
 		5B55C2912B82632600C0E923 /* TodoItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55C2902B82632600C0E923 /* TodoItemListViewController.swift */; };
 		5B55C2932B82681B00C0E923 /* TodoItemListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55C2922B82681B00C0E923 /* TodoItemListTableViewCell.swift */; };
@@ -54,6 +53,7 @@
 		5B62BC8F2B7CA2DD0099A85F /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC8E2B7CA2DD0099A85F /* BaseCollectionViewCell.swift */; };
 		5B62BC922B7CA36F0099A85F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BC912B7CA36F0099A85F /* BaseView.swift */; };
 		5B7CBCBF2B82FFAB00159B92 /* UIViewController+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */; };
+		5B85D3BB2B841CFC00363065 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85D3BA2B841CFC00363065 /* ImageTableViewCell.swift */; };
 		5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */; };
 		5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */; };
 		5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */; };
@@ -69,7 +69,6 @@
 		5B05808C2B7CEAF3006C1C21 /* PriorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityView.swift; sourceTree = "<group>"; };
 		5B05808F2B7CF210006C1C21 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		5B0580912B7CF24E006C1C21 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
-		5B4DDE232B836FCC00097D8A /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		5B4DDE262B8375EF00097D8A /* CalendarSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSwipeViewController.swift; sourceTree = "<group>"; };
 		5B55C2902B82632600C0E923 /* TodoItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemListViewController.swift; sourceTree = "<group>"; };
 		5B55C2922B82681B00C0E923 /* TodoItemListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemListTableViewCell.swift; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		5B62BC8E2B7CA2DD0099A85F /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B62BC912B7CA36F0099A85F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FileManager.swift"; sourceTree = "<group>"; };
+		5B85D3BA2B841CFC00363065 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
@@ -203,7 +203,6 @@
 				5B05808A2B7CEAEC006C1C21 /* PriorityViewController.swift */,
 				5B0580822B7CEAD4006C1C21 /* DateViewController.swift */,
 				5B0580882B7CEAE2006C1C21 /* TagViewController.swift */,
-				5B4DDE232B836FCC00097D8A /* ImageViewController.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -398,6 +397,7 @@
 			children = (
 				5B5F00B22B81FDA200B6A79A /* TextInputTableViewCell.swift */,
 				5B5F00BB2B8204E200B6A79A /* TextViewTableViewCell.swift */,
+				5B85D3BA2B841CFC00363065 /* ImageTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -509,8 +509,8 @@
 				5B5F00BF2B8207FB00B6A79A /* PlaceholderTextView.swift in Sources */,
 				5B62BC8F2B7CA2DD0099A85F /* BaseCollectionViewCell.swift in Sources */,
 				5B62BC882B7CA2960099A85F /* NSObject+id.swift in Sources */,
+				5B85D3BB2B841CFC00363065 /* ImageTableViewCell.swift in Sources */,
 				5B62BC802B7CA24C0099A85F /* ReminderView.swift in Sources */,
-				5B4DDE242B836FCC00097D8A /* ImageViewController.swift in Sources */,
 				5B5F00B12B81F9E900B6A79A /* UITableViewCell+Extension.swift in Sources */,
 				5B0580892B7CEAE2006C1C21 /* TagViewController.swift in Sources */,
 				5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */,

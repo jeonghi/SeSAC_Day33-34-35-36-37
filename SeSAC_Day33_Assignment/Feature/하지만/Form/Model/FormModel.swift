@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class Form {
   let sections: [FormSection]
@@ -41,6 +42,10 @@ struct TextViewFormItem: FormItem {
   let text: String
   let placeholder: String
   let didChange: (String?) -> ()
+}
+
+struct ImageDisplayFormItem: FormItem {
+  let image: UIImage
 }
 
 protocol FormItem {

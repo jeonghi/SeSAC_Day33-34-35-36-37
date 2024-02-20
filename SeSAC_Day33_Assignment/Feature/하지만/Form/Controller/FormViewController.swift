@@ -24,6 +24,7 @@ final class FormViewController: BaseViewController {
       $0.dataSource = self
       $0.register(TextInputTableViewCell.self, forCellReuseIdentifier: TextInputTableViewCell.identifier)
       $0.register(TextViewTableViewCell.self, forCellReuseIdentifier: TextViewTableViewCell.identifier)
+      $0.register(ImageTableViewCell.self, forCellReuseIdentifier: ImageTableViewCell.identifier)
       $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
       $0.rowHeight = UITableView.automaticDimension
       $0.estimatedRowHeight = 500
@@ -114,15 +115,55 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
   func refresh() {
     let form = Form(
       sections: [
-        FormSection(items: [
-          TextInputFormItem(
-            text: self.todo.title, placeholder: "제목", didChange: { self.todo.title = $0 }),
-          TextViewFormItem(text: self.todo.memo ?? "", placeholder: "메모", didChange: { self.todo.memo = $0})
-        ]),
-        FormSection(items: [CustomFormItem(title: "마감일", detail: self.todo.dueDate?.toString(), didChange: { self.todo.dueDate = $0 })]),
-        FormSection(items: [CustomFormItem(title: "태그", detail: self.todo.tag, didChange: { self.todo.tag = $0})]),
-        FormSection(items: [CustomFormItem(title: "우선순위", detail: self.todo.priority?.description, didChange: { self.todo.priority = $0})]),
-        FormSection(items: [CustomFormItem<UIImage>(title: "이미지", didChange: { _ in })])
+        FormSection(
+          items: [
+            TextInputFormItem(
+              text: self.todo.title,
+              placeholder: "제목",
+              didChange: {
+                self.todo.title = $0
+              }),
+            TextViewFormItem(text: self.todo.memo ?? "",
+                             placeholder: "메모",
+                             didChange: {
+                               self.todo.memo = $0
+                             })
+          ]
+        ),
+        FormSection(
+          items: [CustomFormItem(title: "마감일",
+                                 detail: self.todo.dueDate?.toString(),
+                                 didChange: {
+                                   self.todo.dueDate = $0
+                                 })]
+        ),
+        FormSection(
+          items: [CustomFormItem(title: "태그",
+                                 detail: self.todo.tag,
+                                 didChange: {
+                                   self.todo.tag = $0
+                                 })]
+        ),
+        FormSection(
+          items: [CustomFormItem(title: "우선순위",
+                                 detail: self.todo.priority?.description,
+                                 didChange: {
+                                   self.todo.priority = $0
+                                 })]
+        ),
+        FormSection(items: {
+          var items: [FormItem] = [CustomFormItem<UIImage>(title: "이미지",
+                                               didChange: { _ in })]
+          if let fileName = self.todo.imagePath {
+            if let image = loadImageFromDocument(filename: fileName) {
+              items.append(ImageDisplayFormItem(image: image))
+              print("있음1")
+            }
+            print("있음11")
+          }
+          return items
+        }()
+        ),
       ]
     )
     self.form = form
@@ -164,6 +205,11 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
         withIdentifier: TextViewTableViewCell.identifier,
         for: indexPath
       ) as! TextViewTableViewCell
+      cell.configure(for: textRow)
+      return cell
+    }
+    else if let textRow = object as? ImageDisplayFormItem {
+      let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell.identifier, for: indexPath) as! ImageTableViewCell
       cell.configure(for: textRow)
       return cell
     } else {
@@ -285,6 +331,7 @@ extension FormViewController: UIImagePickerControllerDelegate, UINavigationContr
       saveImageToDocument(image: pickedImage, filename: "\(fileName)")
       todo.imagePath = fileName
       refresh()
+      todoView.tableView.reloadData()
     }
     dismiss(animated: true)
   }

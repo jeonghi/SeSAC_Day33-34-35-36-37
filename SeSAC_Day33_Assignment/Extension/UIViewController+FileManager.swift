@@ -38,18 +38,22 @@ extension UIViewController {
   }
   
   
-  func loadImageToDocument(filename: String) -> UIImage? {
-    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+  func loadImageFromDocument(filename: String) -> UIImage? {
+    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return UIImage(systemName: "star.fill") }
     
     // 저장 파일 경로를 만들어줄거임.
-    let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
+    let imageDirectoryPath = documentDirectory.appendingPathComponent("image")
+    let fileURL = imageDirectoryPath.appendingPathComponent("\(filename).jpg")
     
     // 경로에 파일이 있는지 확인
     
+    print(fileURL.path())
     if FileManager.default.fileExists(atPath: fileURL.path()) {
+      print("파일존재함")
       return UIImage(contentsOfFile: fileURL.path())
     } else {
-      return UIImage(systemName: "stat.fill")
+      print("파일존재안함")
+      return UIImage(systemName: "star.fill")
     }
   }
 }
