@@ -23,7 +23,7 @@ final class ReminderViewController: BaseViewController {
     
     $0.tableView.do {
       $0.delegate = self
-      $0.delegate = self
+      $0.dataSource = self
       $0.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
     }
   }
@@ -250,6 +250,8 @@ extension ReminderViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension ReminderViewController: UITableViewDelegate, UITableViewDataSource {
+  
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     todoDocuments?.count ?? 0
   }
@@ -258,13 +260,16 @@ extension ReminderViewController: UITableViewDelegate, UITableViewDataSource {
     UITableView.automaticDimension
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
     guard let document = todoDocuments?[indexPath.row] else {
+      
       return .init()
     }
     
-    let cell = UITableViewCell(style: .default, reuseIdentifier: UITableViewCell.identifier)
+    let cell = UITableViewCell(style: .value1, reuseIdentifier: UITableViewCell.identifier)
     cell.textLabel?.text = document.name
+    cell.imageView?.image = UIImage(systemName: "folder.circle.fill")
+    cell.accessoryType = .disclosureIndicator
+    cell.detailTextLabel?.text = "\(document.items.count)"
     return cell
   }
   
@@ -273,6 +278,10 @@ extension ReminderViewController: UITableViewDelegate, UITableViewDataSource {
     guard let document = todoDocuments?[indexPath.row] else {
       return
     }
+    let vc = TodoItemListViewController()
+    vc.selectedTodoDocument = document
+    vc.navigationItem.title = document.name
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 

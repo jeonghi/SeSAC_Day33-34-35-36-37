@@ -26,6 +26,7 @@ final class TodoFormViewController: BaseViewController {
   
   // MARK: Dependency
   var todoRepository: TodoRepository = TodoRepositoryImpl()
+  var todoDocumentRepository: TodoDocumentRepository = TodoDocumentRepositoryImpl()
   
   // MARK: Initializer
   init(
@@ -136,7 +137,9 @@ extension TodoFormViewController {
       self.view.makeToast("제목을 입력해주세요", position: .top)
       return
     }
-    todoRepository.create(todoItem: todoItem)
+    if let todoItem = todoRepository.create(todoItem: todoItem), let todoDocument {
+      todoDocumentRepository.addTodoItem(to: todoDocument, item: todoItem)
+    }
     dismiss(animated: true, completion: closeAction)
   }
   

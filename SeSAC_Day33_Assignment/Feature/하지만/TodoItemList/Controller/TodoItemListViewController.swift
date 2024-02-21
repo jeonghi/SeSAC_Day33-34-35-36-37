@@ -13,7 +13,9 @@ import RealmSwift
 final class TodoItemListViewController: BaseViewController {
   
   var todoRepository: TodoRepository = TodoRepositoryImpl()
+  var todoDocumentRepository: TodoDocumentRepository = TodoDocumentRepositoryImpl()
   
+  var selectedTodoDocument: TodoDocument?
   var defaultPredicate: NSPredicate? {
     didSet {
       refresh()
@@ -86,7 +88,15 @@ extension TodoItemListViewController: UITableViewDelegate, UITableViewDataSource
   func refresh() {
     
     // ‼️ 시간나면, 리포지토리에 온전히 분리시키기
-    filterTodoItems(by: defaultPredicate)
+    
+    // 스퐈게리 🍝 코드 ..,;;;;; 개선필요
+    
+    if let selectedTodoDocument {
+            todoItems = selectedTodoDocument.items.sorted(byKeyPath: defaultSortOption.keyPath, ascending: defaultSortOption.isAscending)
+    } else {
+      filterTodoItems(by: defaultPredicate)
+    }
+    
     sortTodoItems(by: defaultSortOption)
     
     tableView.reloadData()
@@ -104,7 +114,7 @@ extension TodoItemListViewController: UITableViewDelegate, UITableViewDataSource
     
     let model = todoItems?[indexPath.row]
     
-    cell.config(title: model?.title, memo: model?.memo, dueDate: model?.dueDate, priority: model?.priority, tag: model?.tag, isDone: true)
+    cell.config(title: model?.title, memo: model?.memo, dueDate: model?.dueDate, priority: model?.priority, tag: model?.tag, isDone: false)
     return cell
   }
   
@@ -177,6 +187,7 @@ extension TodoItemListViewController {
     let editAction = UIContextualAction(style: .normal, title: "수정") {
       action, view, completion in
       let vc = TodoFormViewController(todo: todoItem).then {
+        $0.todoDocument = self.selectedTodoDocument
         $0.navigationItem.title = "할 일 수정하기"
         $0.closeAction = {
           self.tableView.reloadRows(at: [indexPath], with: .automatic)

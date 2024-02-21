@@ -20,7 +20,7 @@ class TodoDocumentRepositoryImpl: TodoDocumentRepository {
   
   private var realm: Realm {
     get {
-      print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
+//      print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
       return try! Realm()
     }
   }

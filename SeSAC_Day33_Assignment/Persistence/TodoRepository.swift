@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 protocol TodoRepository {
-  func create(todoItem: TodoItem)
+  func create(todoItem: TodoItem) -> TodoItem?
   func readAll() -> Results<TodoItem>
   func readFiltered(by predicate: NSPredicate) -> Results<TodoItem>
   func searchByTitle(title: String) -> Results<TodoItem>
@@ -26,7 +26,7 @@ class TodoRepositoryImpl: TodoRepository {
   
   private var realm: Realm {
     get {
-      print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
+      //      print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
       return try! Realm()
     }
   }
@@ -53,15 +53,17 @@ class TodoRepositoryImpl: TodoRepository {
     return realm.object(ofType: TodoItem.self, forPrimaryKey: id)
   }
   
-  func create(
-    todoItem: TodoItem
-  ) {
-    try! realm.write {
-      realm.add(
-        todoItem
-      )
+  func create(todoItem: TodoItem) -> TodoItem? {
+    do {
+      try realm.write {
+        realm.add(todoItem)
+      }
+      return todoItem // 정상적으로 추가되었으면 todoItem 반환
+    } catch {
+      return nil // 에러 발생시 nil 반환
     }
   }
+  
   
   func readAll() -> Results<TodoItem> {
     return realm.objects(
