@@ -11,6 +11,8 @@ import Then
 
 final class TextViewTableViewCell: BaseTableViewCell {
   
+  private var changeHandler: ((String) -> ())?
+  
   lazy var editableTextView = PlaceholderTextView().then {
     $0.textAlignment = .left
     $0.delegate = self
@@ -62,12 +64,6 @@ final class TextViewTableViewCell: BaseTableViewCell {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     editableTextView.becomeFirstResponder()
   }
-  
-  private var changeHandler: (String) -> () = { _ in }
-  
-  @objc private func textDidChange() {
-    changeHandler(editableTextView.text ?? "")
-  }
 }
 
 extension TextViewTableViewCell: UITextViewDelegate {
@@ -78,17 +74,20 @@ extension TextViewTableViewCell: UITextViewDelegate {
   }
   
   func textViewDidChange(_ textView: UITextView) {
-      guard let tableView = tableView else { return }
-
-      let contentSize = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: .infinity))
-
-      if textView.bounds.height != contentSize.height {
-          tableView.contentOffset.y += contentSize.height - textView.bounds.height
-
-          UIView.setAnimationsEnabled(false)
-          tableView.beginUpdates()
-          tableView.endUpdates()
-          UIView.setAnimationsEnabled(true)
-      }
+    
+    changeHandler?(textView.text)
+    
+    guard let tableView = tableView else { return }
+    
+    let contentSize = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: .infinity))
+    
+    if textView.bounds.height != contentSize.height {
+      tableView.contentOffset.y += contentSize.height - textView.bounds.height
+      
+      UIView.setAnimationsEnabled(false)
+      tableView.beginUpdates()
+      tableView.endUpdates()
+      UIView.setAnimationsEnabled(true)
+    }
   }
 }

@@ -201,9 +201,7 @@ extension TodoFormViewController {
           if let fileName = todoItem.imagePath {
             if let image = loadImageFromDocument(filename: fileName) {
               items.append(ImageDisplayFormItem(image: image))
-              print("있음1")
             }
-            print("있음11")
           }
           return items
         }()
