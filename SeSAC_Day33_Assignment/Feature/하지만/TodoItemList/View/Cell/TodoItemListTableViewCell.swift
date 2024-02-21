@@ -11,7 +11,7 @@ import Then
 
 class TodoItemListTableViewCell: BaseTableViewCell {
   
-  let doneButton = UIButton()
+//  let doneButton = UIButton()
   let priorityLabel = UILabel().then {
     $0.textColor = .link
     $0.textAlignment = .left
@@ -56,15 +56,12 @@ class TodoItemListTableViewCell: BaseTableViewCell {
   }
   
   override func configLayout() {
-    doneButton.snp.makeConstraints {
-      $0.size.equalTo(45)
-      $0.top.left.equalToSuperview().offset(10)
-    }
+//    doneButton.snp.makeConstraints {
+//      $0.size.equalTo(45)
+//      $0.top.left.equalToSuperview().offset(10)
+//    }
     mainStackView.snp.makeConstraints {
-      $0.top.equalToSuperview().offset(10) // 상단 여백
-      $0.left.equalTo(doneButton.snp.right).offset(10) // doneButton 옆에 배치
-      $0.right.equalToSuperview().inset(10) // 우측 여백
-      $0.bottom.equalToSuperview().offset(-10) // 하단 여백 추가
+      $0.edges.equalTo(safeAreaLayoutGuide).inset(10)
     }
     
     priorityLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -75,7 +72,7 @@ class TodoItemListTableViewCell: BaseTableViewCell {
   }
   
   override func configHierarchy() {
-    addSubviews([doneButton, mainStackView])
+    addSubviews([mainStackView])
   }
   
   override func prepareForReuse() {
@@ -88,6 +85,7 @@ class TodoItemListTableViewCell: BaseTableViewCell {
       if(isDone) {
         $0.attributedText = title?.strikeThrough()
       } else {
+        $0.attributedText = nil
         $0.text = title
       }
     }
@@ -115,9 +113,6 @@ class TodoItemListTableViewCell: BaseTableViewCell {
       } else {
         $0.isHidden = true
       }
-    }
-    doneButton.do {
-      $0.setImage(UIImage(systemName: isDone ? "circle.fill" : "circle")?.withTintColor(UIColor.lightGray, renderingMode: .alwaysOriginal), for: .normal)
     }
   }
 }

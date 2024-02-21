@@ -17,6 +17,7 @@ protocol TodoRepository {
   func updateById(id: ObjectId, with: TodoItem)
   func readById(id: ObjectId) -> TodoItem?
   func delete(todoItem: TodoItem)
+  func toggleDone(todoItem: TodoItem) -> TodoItem?
   func sortByDate(ascending: Bool) -> Results<TodoItem> // 날짜 기반 정렬
   func sortByTitle(ascending: Bool) -> Results<TodoItem> // 제목 기반 정렬
   func sortByPriority(ascending: Bool) -> Results<TodoItem> // 우선순위 기반 정렬
@@ -31,10 +32,19 @@ class TodoRepositoryImpl: TodoRepository {
     }
   }
   
+  func toggleDone(todoItem: TodoItem) -> TodoItem? {
+    do {
+      try realm.write {
+        todoItem.isDone = !todoItem.isDone
+      }
+      return todoItem // 정상적으로 추가되었으면 todoItem 반환
+    } catch {
+      return nil // 에러 발생시 nil 반환
+    }
+  }
   
   func updateById(id: ObjectId, with newTodoItem: TodoItem) {
-    guard let realm = try? Realm() else { return }
-    
+  
     if let existingTodoItem = readById(id: id) {
       try? realm.write {
         existingTodoItem.title = newTodoItem.title
@@ -104,7 +114,6 @@ class TodoRepositoryImpl: TodoRepository {
       todoItem.memo = newTodoItem.memo
       todoItem.dueDate = newTodoItem.dueDate
       todoItem.priority = newTodoItem.priority
-      // Tags update logic can be added here
     }
   }
   

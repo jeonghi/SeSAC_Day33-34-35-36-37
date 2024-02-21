@@ -114,7 +114,7 @@ extension TodoItemListViewController: UITableViewDelegate, UITableViewDataSource
     
     let model = todoItems?[indexPath.row]
     
-    cell.config(title: model?.title, memo: model?.memo, dueDate: model?.dueDate, priority: model?.priority, tag: model?.tag, isDone: false)
+    cell.config(title: model?.title, memo: model?.memo, dueDate: model?.dueDate, priority: model?.priority, tag: model?.tag, isDone: model?.isDone ?? false)
     return cell
   }
   
@@ -173,7 +173,26 @@ extension TodoItemListViewController {
 
 extension TodoItemListViewController {
   func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    nil
+    
+    guard let todoItem = self.todoItems?[indexPath.item] else {
+      return nil
+    }
+    
+    let doneAction = UIContextualAction(style: .normal, title: "") { action, view, completion in
+      let _ = self.todoRepository.toggleDone(todoItem: todoItem)
+      self.refresh()
+      self.tableView.reloadRows(at: [indexPath], with: .automatic)
+      completion(true)
+    }.then {
+      $0.image = UIImage(systemName: todoItem.isDone ? "checkmark.circle.fill" : "circle")
+      $0.image?.withTintColor(.green, renderingMode: .alwaysOriginal)
+      $0.backgroundColor = .systemGreen
+    }
+    
+    /// 스와이프 액션들 설정하기
+    let configuration = UISwipeActionsConfiguration(actions: [doneAction])
+    
+    return configuration
   }
   
   @available(iOS, introduced: 11.0)
