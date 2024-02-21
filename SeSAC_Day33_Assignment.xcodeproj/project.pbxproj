@@ -64,6 +64,7 @@
 		5BB304532B850ADB000F5B21 /* TodoDocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB304522B850ADB000F5B21 /* TodoDocumentListViewController.swift */; };
 		5BB304552B850D2D000F5B21 /* TodoDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB304542B850D2D000F5B21 /* TodoDocumentViewController.swift */; };
 		5BC33BD02B80A45A007EE76F /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */; };
+		5BD0707E2B862BC600932989 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0707D2B862BC600932989 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		5BB304522B850ADB000F5B21 /* TodoDocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocumentListViewController.swift; sourceTree = "<group>"; };
 		5BB304542B850D2D000F5B21 /* TodoDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocumentViewController.swift; sourceTree = "<group>"; };
 		5BC33BCF2B80A45A007EE76F /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
+		5BD0707D2B862BC600932989 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +343,7 @@
 				5B5F00B02B81F9E900B6A79A /* UITableViewCell+Extension.swift */,
 				5B55C2942B82748800C0E923 /* Date+Extension.swift */,
 				5B7CBCBE2B82FFAB00159B92 /* UIViewController+FileManager.swift */,
+				5BD0707D2B862BC600932989 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				5B62BC802B7CA24C0099A85F /* ReminderView.swift in Sources */,
 				5B5F00B12B81F9E900B6A79A /* UITableViewCell+Extension.swift in Sources */,
 				5B0580892B7CEAE2006C1C21 /* TagViewController.swift in Sources */,
+				5BD0707E2B862BC600932989 /* String+Extension.swift in Sources */,
 				5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */,
 				5BB304552B850D2D000F5B21 /* TodoDocumentViewController.swift in Sources */,
 				5B62BC862B7CA2720099A85F /* BaseViewController.swift in Sources */,

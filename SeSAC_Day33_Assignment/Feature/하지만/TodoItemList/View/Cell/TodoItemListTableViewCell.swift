@@ -84,7 +84,13 @@ class TodoItemListTableViewCell: BaseTableViewCell {
   }
   
   func config(title: String? = nil, memo: String? = nil, dueDate: Date? = nil, priority: Priority? = nil, tag: String? = nil, isDone: Bool = false) {
-    titleLabel.text = title
+    titleLabel.do {
+      if(isDone) {
+        $0.attributedText = title?.strikeThrough()
+      } else {
+        $0.text = title
+      }
+    }
     memoLabel.text = memo
     dateLabel.do {
       if let dueDate {
