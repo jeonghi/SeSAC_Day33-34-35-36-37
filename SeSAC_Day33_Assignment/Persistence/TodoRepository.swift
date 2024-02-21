@@ -14,6 +14,8 @@ protocol TodoRepository {
   func readFiltered(by predicate: NSPredicate) -> Results<TodoItem>
   func searchByTitle(title: String) -> Results<TodoItem>
   func update(todoItem: TodoItem, with newTodoItem: TodoItem)
+  func updateById(id: ObjectId, with: TodoItem)
+  func readById(id: ObjectId) -> TodoItem?
   func delete(todoItem: TodoItem)
   func sortByDate(ascending: Bool) -> Results<TodoItem> // 날짜 기반 정렬
   func sortByTitle(ascending: Bool) -> Results<TodoItem> // 제목 기반 정렬
@@ -27,6 +29,28 @@ class TodoRepositoryImpl: TodoRepository {
       print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
       return try! Realm()
     }
+  }
+  
+  
+  func updateById(id: ObjectId, with newTodoItem: TodoItem) {
+    guard let realm = try? Realm() else { return }
+    
+    if let existingTodoItem = readById(id: id) {
+      try? realm.write {
+        existingTodoItem.title = newTodoItem.title
+        existingTodoItem.memo = newTodoItem.memo
+        existingTodoItem.dueDate = newTodoItem.dueDate
+        existingTodoItem.tag = newTodoItem.tag
+        existingTodoItem.priority = newTodoItem.priority
+        existingTodoItem.isDone = newTodoItem.isDone
+        existingTodoItem.imagePath = newTodoItem.imagePath
+        existingTodoItem.timestamps?.updatedAt = Date()
+      }
+    }
+  }
+  
+  func readById(id: ObjectId) -> TodoItem? {
+    return realm.object(ofType: TodoItem.self, forPrimaryKey: id)
   }
   
   func create(

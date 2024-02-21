@@ -15,13 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Realm 마이그레이션 설정
     let config = Realm.Configuration(
-      schemaVersion: 1, // 이전 버전보다 높은 숫자 사용
+      schemaVersion: 0, // 이전 버전보다 높은 숫자 사용
       migrationBlock: { migration, oldSchemaVersion in
-        if (oldSchemaVersion < 1) {
-          // 필요한 경우 여기에서 추가 마이그레이션 로직을 구현
-        }
+//        if (oldSchemaVersion < 1) {
+//          // 필요한 경우 여기에서 추가 마이그레이션 로직을 구현
+//        }
+//        
+//        if (oldSchemaVersion < 2) {
+//          // 모든 TodoItem 객체에 대해 마이그레이션을 수행
+//          migration.enumerateObjects(ofType: TodoItem.className()) { oldObject, newObject in
+//            // 새 timestamps 객체를 생성. 마이그레이션 시 필요한 초기값을 제공
+//            let createdAt = oldObject!["createdAt"] as! Date
+//            let updatedAt = oldObject!["updatedAt"] as? Date
+//            
+//            // timestamps 임베드 객체를 생성하고, oldObject에서 가져온 값으로 초기화
+//            let timestamps = migration.create(Timestamps.className(), value: ["createdAt": createdAt, "updatedAt": updatedAt])
+//            
+//            // 새로운 객체에 timestamps 임베드 객체를 설정합니다.
+//            newObject!["timestamps"] = timestamps
+//          }
+//        }
       })
     
+    // 앱의 나머지 부분에서 사용할 Realm 구성을 업데이트합니다.
     Realm.Configuration.defaultConfiguration = config
     
     do {

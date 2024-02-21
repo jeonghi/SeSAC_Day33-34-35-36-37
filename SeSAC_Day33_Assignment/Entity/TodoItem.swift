@@ -20,7 +20,7 @@ class TodoItem: Object {
   @Persisted var imagePath: String?
   @Persisted(originProperty: "items") var document: LinkingObjects<TodoDocument> // Inverse 관계
   @Persisted var timestamps: Timestamps?
-
+  
   convenience init(title: String, memo: String? = nil, dueDate: Date? = nil, tag: String? = nil, priority: Priority? = nil, imagePath: String? = nil) {
     self.init()
     self.title = title
@@ -31,6 +31,39 @@ class TodoItem: Object {
     self.isDone = false
     self.timestamps = Timestamps()
     self.imagePath = imagePath
+  }
+  
+  // 복사 생성자
+  convenience init(copy from: TodoItem) {
+    self.init()
+    self.title = from.title
+    self.memo = from.memo
+    self.dueDate = from.dueDate
+    self.tag = from.tag
+    self.priority = from.priority
+    self.isDone = from.isDone
+    self.imagePath = from.imagePath
+    self.timestamps = from.timestamps
+  }
+  
+  enum SortOption: String, CaseIterable {
+    case createDate = "생성날짜"
+    case dueDate = "마감일"
+    case priority = "우선순위"
+    case title = "제목"
+    
+    var keyPath: String {
+      switch self {
+      case .createDate:
+        return "timestamps.createdAt"
+      case .dueDate:
+        return "dueDate"
+      case .priority:
+        return "priority"
+      case .title:
+        return "title"
+      }
+    }
   }
 }
 

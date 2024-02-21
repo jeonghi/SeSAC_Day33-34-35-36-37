@@ -58,7 +58,7 @@
 		5B9AAA542B7E2BE800AF25F1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */; };
 		5B9AAA582B7E2DEC00AF25F1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */; };
 		5BB3044A2B84F7BF000F5B21 /* TodoDocumentFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB304492B84F7BF000F5B21 /* TodoDocumentFormViewController.swift */; };
-		5BB3044C2B8503C5000F5B21 /* Timestapms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB3044B2B8503C5000F5B21 /* Timestapms.swift */; };
+		5BB3044C2B8503C5000F5B21 /* Timestamps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB3044B2B8503C5000F5B21 /* Timestamps.swift */; };
 		5BB3044E2B8503FD000F5B21 /* TodoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB3044D2B8503FD000F5B21 /* TodoDocument.swift */; };
 		5BB304502B850493000F5B21 /* TodoDocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB3044F2B850493000F5B21 /* TodoDocumentRepository.swift */; };
 		5BB304532B850ADB000F5B21 /* TodoDocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB304522B850ADB000F5B21 /* TodoDocumentListViewController.swift */; };
@@ -114,7 +114,7 @@
 		5B9AAA532B7E2BE800AF25F1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		5B9AAA572B7E2DEC00AF25F1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		5BB304492B84F7BF000F5B21 /* TodoDocumentFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocumentFormViewController.swift; sourceTree = "<group>"; };
-		5BB3044B2B8503C5000F5B21 /* Timestapms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestapms.swift; sourceTree = "<group>"; };
+		5BB3044B2B8503C5000F5B21 /* Timestamps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamps.swift; sourceTree = "<group>"; };
 		5BB3044D2B8503FD000F5B21 /* TodoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocument.swift; sourceTree = "<group>"; };
 		5BB3044F2B850493000F5B21 /* TodoDocumentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocumentRepository.swift; sourceTree = "<group>"; };
 		5BB304522B850ADB000F5B21 /* TodoDocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocumentListViewController.swift; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 			children = (
 				5B0580912B7CF24E006C1C21 /* Priority.swift */,
 				5B05808F2B7CF210006C1C21 /* TodoItem.swift */,
-				5BB3044B2B8503C5000F5B21 /* Timestapms.swift */,
+				5BB3044B2B8503C5000F5B21 /* Timestamps.swift */,
 				5BB3044D2B8503FD000F5B21 /* TodoDocument.swift */,
 			);
 			path = Entity;
@@ -536,7 +536,7 @@
 				5B05808B2B7CEAEC006C1C21 /* PriorityViewController.swift in Sources */,
 				5BB304532B850ADB000F5B21 /* TodoDocumentListViewController.swift in Sources */,
 				5B0580752B7CE004006C1C21 /* NewTodoView.swift in Sources */,
-				5BB3044C2B8503C5000F5B21 /* Timestapms.swift in Sources */,
+				5BB3044C2B8503C5000F5B21 /* Timestamps.swift in Sources */,
 				5B62BC592B7C9A270099A85F /* AppDelegate.swift in Sources */,
 				5B55C2952B82748800C0E923 /* Date+Extension.swift in Sources */,
 				5B5F00B52B81FE3700B6A79A /* TodoFormViewController.swift in Sources */,

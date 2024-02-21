@@ -16,6 +16,7 @@ class CalendarSwipeViewController: BaseViewController {
     $0.locale = Locale(identifier: "ko-KR")
     $0.delegate = self
     $0.dataSource = self
+    $0.select(Date())
   }
   
   let contentView: UIView = .init(frame: .zero)
@@ -23,7 +24,6 @@ class CalendarSwipeViewController: BaseViewController {
   var todoRepository: TodoRepository = TodoRepositoryImpl()
   weak var todoItemListViewController: TodoItemListViewController?
   
-  var selectedDate: Date? = Date()
   var isMonthlyMode: Bool = true {
     didSet {
       if(isMonthlyMode){

@@ -115,3 +115,8 @@ class TodoItemListTableViewCell: BaseTableViewCell {
     }
   }
 }
+
+@available(iOS 17.0, *)
+#Preview {
+  TodoItemListTableViewCell()
+}

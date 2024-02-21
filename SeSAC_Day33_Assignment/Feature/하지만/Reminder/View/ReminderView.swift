@@ -23,13 +23,12 @@ final class ReminderView: BaseView {
   }
   
   override func configLayout() {
+//    collectionView.snp.makeConstraints {
+//      $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
+//      $0.height.equalTo(self.snp.height).dividedBy(2)
+//    }
     collectionView.snp.makeConstraints {
-      $0.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
-      $0.height.equalTo(self.snp.height).dividedBy(2)
-    }
-    tableView.snp.makeConstraints {
-      $0.top.equalTo(collectionView.snp.bottom)
-      $0.bottom.horizontalEdges.equalTo(safeAreaLayoutGuide)
+      $0.edges.equalTo(safeAreaLayoutGuide)
     }
   }
   
